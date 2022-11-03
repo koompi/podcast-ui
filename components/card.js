@@ -1,13 +1,24 @@
 import React from "react";
 import Link from "next/link";
 
-const Card = () => {
+const Card = ({
+  title,
+  grade,
+  subject,
+  thumbnail,
+  fileType,
+  location,
+  thumbnailName,
+  gradeKh,
+  subjectKh,
+}) => {
   return (
-    <div className="show-icon">
+    <div className="show-icon bg-base-200 p-3 rounded-lg">
       <div
-        className="w-full aspect-square bg-base-300 rounded-xl bg-cover bg-center flex place-content-center"
+        className="w-full aspect-square bg-slate-500 rounded-xl bg-cover bg-center flex place-content-center place-items-center"
         style={{
-          backgroundImage: `url("http://placeimg.com/640/480/abstract")`,
+          // backgroundImage: `url("http://placeimg.com/640/480/abstract")`,
+          backgroundImage: `url("https://unicef.koompi.app/${location}/${thumbnailName}")`,
         }}
       >
         <div className="icon hidden btn glass btn-circle p-3">
@@ -29,8 +40,12 @@ const Card = () => {
         </div>
       </div>
       <div className="py-2">
-        <div className="badge badge-ghost">44k</div>
-        <h1 className="font-semibold">បាត់គោជួបស្នេហ៍</h1>
+        {/* <div className="badge badge-ghost">44k</div> */}
+        <div className="flex space-x-2 mb-1">
+          <span className="badge badge-success">{gradeKh}</span>
+          <span className="badge badge-success">{subjectKh}</span>
+        </div>
+        <h1 className="font-semibold">{title}</h1>
       </div>
     </div>
   );

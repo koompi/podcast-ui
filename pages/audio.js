@@ -2,7 +2,6 @@
 import { useState } from "react";
 import AudioPlayer from "react-h5-audio-player";
 import "react-h5-audio-player/lib/styles.css";
-import Navbar from "../components/navbar";
 
 export default function App() {
   const musicTracks = [
@@ -84,7 +83,6 @@ export default function App() {
 
   return (
     <div>
-      <Navbar />
       <br />
       <div className="flex place-content-center place-items-center">
         <AudioPlayer
@@ -94,7 +92,7 @@ export default function App() {
           // autoPlay
           // layout="horizontal"
           src={musicTracks[trackIndex].src}
-          onPlay={(e) => console.log("onPlay")}
+          // onPlay={(e) => console.log("onPlay")}
           showSkipControls={true}
           showJumpControls={false}
           // header={`Now playing: ${musicTracks[trackIndex].name}`}

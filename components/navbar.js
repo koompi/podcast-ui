@@ -4,13 +4,16 @@ import Link from "next/link";
 
 const Navbar = () => {
   return (
-    <div className="navbar bg-base-300 px-20 flex place-items-center place-content-center">
-      <div className="container ">
-        <Link href="/" className="btn btn-ghost normal-case text-xl">
-          Podcast
+    <div
+      // className="navbar bg-base-300 px-20 flex place-items-center place-content-center"
+      className="flex justify-between bg-base-300 px-2 py-2"
+    >
+      <div className="container">
+        <Link href="/" className="btn btn-ghost normal-case text-lg">
+          Contents Bank
         </Link>
       </div>
-      <div className="flex-none gap-2">
+      <div className="">
         {/* <div className="form-control">
           <input
             type="text"
