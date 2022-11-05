@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import AuthContext from "../pages/context/authContext";
 
 const Navbar = () => {
+  const { loggedIn } = useContext(AuthContext);
   return (
     <div
       // className="navbar bg-base-300 px-20 flex place-items-center place-content-center"
@@ -27,23 +29,33 @@ const Navbar = () => {
               <img src="https://placeimg.com/80/80/people" />
             </div>
           </label>
-          <ul
-            tabIndex={0}
-            className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52"
-          >
-            <li>
-              <a className="justify-between">
-                Profile
-                <span className="badge">New</span>
-              </a>
-            </li>
-            <li>
-              <a>Settings</a>
-            </li>
-            <li>
-              <a>Logout</a>
-            </li>
-          </ul>
+
+          {loggedIn ? (
+            <ul
+              tabIndex={0}
+              className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52"
+            >
+              <li>
+                <Link href="/admin/table" className="justify-between">
+                  Table
+                  <span className="badge">New</span>
+                </Link>
+              </li>
+              <li>
+                <Link href="/admin/add">Add Content</Link>
+              </li>
+              <li>
+                <a>Logout</a>
+              </li>
+            </ul>
+          ) : (
+            <ul
+              tabIndex={0}
+              className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52"
+            >
+              <Link href="/login">Login</Link>
+            </ul>
+          )}
         </div>
       </div>
     </div>

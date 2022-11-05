@@ -45,6 +45,7 @@ export default function Home() {
               gradeKh={items.grade_kh}
               subjectKh={items.subject_kh}
               thumbnailName={items.thumbnail.thumbnail_name}
+              id={items.file_id}
             />
           ))}
         </div>

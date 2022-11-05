@@ -20,8 +20,8 @@ const Sidebar = () => {
         <div className="overflow-y-auto py-4 px-3 h-screen bg-gray-50 rounded ">
           {item.map((res, index) => {
             return (
-              <>
-                <ul key={index} className="space-y-2">
+              <div key={index}>
+                <ul className="space-y-2">
                   <li>
                     <button
                       onClick={() => openModal(res.category_id)}
@@ -95,7 +95,7 @@ const Sidebar = () => {
                     </ul>
                   </li>
                 </ul>
-              </>
+              </div>
             );
           })}
         </div>

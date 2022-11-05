@@ -11,6 +11,7 @@ const Card = ({
   thumbnailName,
   gradeKh,
   subjectKh,
+  id,
 }) => {
   return (
     <div className="show-icon bg-base-200 p-3 rounded-lg">
@@ -22,7 +23,7 @@ const Card = ({
         }}
       >
         <div className="icon hidden btn glass btn-circle p-3">
-          <Link href="/audio">
+          <Link href={`/grade/${grade}/${subject}/${id}`}>
             {" "}
             <svg
               xmlns="http://www.w3.org/2000/svg"
