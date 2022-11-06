@@ -45,19 +45,24 @@ const Add = () => {
   //   console.log(typeof token);
 
   const handleSubmit = async (e) => {
+
     // console.log(thumbnail.name, file.name, token);
     e.preventDefault();
     try {
+      const form = new FormData();
+      form.append("file", thumbnail);
+      form.append("thumbnail", thumbnail);
       const response = await fetch(
         `https://unicef.koompi.app/private/api/upload/${grade}/${subject}/${type}`,
         // "https://unicef.koompi.app/private/api/upload/Grade1/MindMotion/PDF",
         {
           method: "POST",
           //   body: JSON.stringify({ thumbnail: "s.png", file: "ds.pdf" }),
-          body: {
-            thumbnail: thumbnail,
-            file: file,
-          },
+          // body: {
+          //   thumbnail: thumbnail,
+          //   file: file,
+          // },
+          body: form,
           headers: {
             // "Content-Type": "multipart/form-data",
             Authorization: `Bearer ${token}`,
@@ -66,8 +71,8 @@ const Add = () => {
           },
         }
       );
-      const data = await response.json();
-      console.log(data);
+      // const data = await response.json();
+      // console.log(data);
     } catch (error) {
       console.log(error);
     }
