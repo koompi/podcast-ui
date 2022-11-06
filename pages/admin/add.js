@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import axios from "axios";
 
 const Add = () => {
   const [item, setItem] = useState([]);
@@ -12,6 +13,8 @@ const Add = () => {
   const [showType, setShowType] = useState(false);
   const inputRef = useRef(null);
   const [file, setFile] = useState(null);
+  const [thumbnail, setThumbnail] = useState(null);
+  const [token, setToken] = useState("");
 
   useEffect(() => {
     // setLoading(true);
@@ -26,16 +29,68 @@ const Add = () => {
   //   console.log(grade, "item");
   //   console.log(buttonSubject, "hello");
   //   console.log(type, "fd");
-  console.log(file);
+  //   console.log(thumbnail);
+  //   if (typeof window !== "undefined") {
+  useEffect(() => {
+    const tokenn = localStorage.getItem("token");
+    setToken(tokenn);
+  }, []);
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: token,
+    },
+    // withCredentials: true,
+  };
+  //   console.log(typeof token);
+
+  const handleSubmit = async (e) => {
+    // console.log(thumbnail.name, file.name, token);
+    e.preventDefault();
+    try {
+      const response = await fetch(
+        `https://unicef.koompi.app/private/api/upload/${grade}/${subject}/${type}`,
+        // "https://unicef.koompi.app/private/api/upload/Grade1/MindMotion/PDF",
+        {
+          method: "POST",
+          //   body: JSON.stringify({ thumbnail: "s.png", file: "ds.pdf" }),
+          body: {
+            thumbnail: thumbnail,
+            file: file,
+          },
+          headers: {
+            // "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${token}`,
+            // " Content-Type":
+            //   "multipart/form-data;boundary=----WebKitFormBoundaryyrV7KO0BoCBuDbTL",
+          },
+        }
+      );
+      const data = await response.json();
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const handleChange = (event) => {
     console.log(event.target.value);
     setGrade(event.target.value);
   };
 
+  const uploadFileHandler = async (e) => {
+    // e.preventDefault();
+    const file = e.target.files[0];
+    const formData = new FormData();
+    formData.append("image", file);
+    // setFile(formData);
+    console.log(formData, "dfa");
+  };
+  console.log(file, "file");
+
   return (
     <div className="container mx-auto mt-12">
-      <form>
+      <form onSubmit={handleSubmit}>
         <div className="mb-6 ">
           <h3>Grade</h3>
           <div className="relative mt-3">
@@ -133,7 +188,7 @@ const Add = () => {
                 onClick={() => setShowType(!showType)}
                 className="bg-base-200 p-3 w-60 rounded-lg cursor-pointer mt-2"
               >
-                Select Type
+                {type === "" ? "Select Type" : type}
               </div>
               <div className={showType === false ? "hidden" : "absolute z-10"}>
                 <div className="bg-base-300 p3 w-60 rounded-lg mt-2">
@@ -173,8 +228,9 @@ const Add = () => {
         <div className="mb-6">
           <label>Add File</label>
           <br />
-
           <input
+            // onChange={uploadFileHandler}
+            name="file"
             ref={inputRef}
             type="file"
             onChange={(e) => {
@@ -182,6 +238,22 @@ const Add = () => {
             }}
           />
         </div>
+        {/* //==========>>upload thumbnail<<================= */}
+        <div className="mb-6">
+          <label>Add Thumbnail</label>
+          <br />
+
+          <input
+            ref={inputRef}
+            type="file"
+            onChange={(e) => {
+              setThumbnail(e.target.files[0]);
+            }}
+          />
+        </div>
+        <button type="submit" className="btn btn-success">
+          Submit
+        </button>
       </form>
       {/* )} */}
     </div>
