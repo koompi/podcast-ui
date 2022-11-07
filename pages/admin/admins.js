@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import AlertMessage from "../../components/alertMessage";
 import AuthContext from "../../pages/context/authContext";
 
-const Table = () => {
+const Admin = () => {
   const { loggedIn } = useContext(AuthContext);
   const [item, setItem] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -10,7 +10,11 @@ const Table = () => {
   const [hideMessage, setHideMessage] = useState(false);
   useEffect(() => {
     setLoading(true);
-    fetch(`https://unicef.koompi.app/public/api/query`)
+    fetch(`https://unicef.koompi.app/private/api/admin/query`, {
+      headers: {
+        Authorization: `Bearer ${loggedIn}`,
+      },
+    })
       .then((res) => res.json())
       .then((data) => {
         setItem(data);
@@ -42,7 +46,7 @@ const Table = () => {
 
   return (
     <div className="container mx-auto mt-12">
-      <h1 className="text-gray-700 text-4xl mb-12 underline">All Contents</h1>
+      <h1 className="text-gray-700 text-4xl mb-12 underline">All Admins</h1>
       {hideMessage ? <AlertMessage message={message} /> : ""}
       {loading ? (
         "loading..."
@@ -54,9 +58,9 @@ const Table = () => {
                 <thead>
                   <tr>
                     <th>No</th>
-                    <th>Grade</th>
-                    <th>Title</th>
-                    <th>Subject</th>
+                    <th>Name</th>
+                    <th>Username</th>
+                    <th>Role</th>
                     <th>Action</th>
                   </tr>
                 </thead>
@@ -66,9 +70,9 @@ const Table = () => {
                       <>
                         <tr>
                           <th>{index + 1}</th>
-                          <td>{res.grade_kh}</td>
                           <td>{res.display_name}</td>
-                          <td>{res.subject_kh}</td>
+                          <td>{res.username}</td>
+                          <td>{res.role}</td>
                           <td>
                             <button
                               className="bg-red-600 px-3 text-pink-100 rounded-md text-sm"
@@ -92,7 +96,7 @@ const Table = () => {
   );
 };
 
-export default Table;
-Table.getLayout = function PageLayout(page) {
+export default Admin;
+Admin.getLayout = function PageLayout(page) {
   return <>{page}</>;
 };

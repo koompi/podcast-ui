@@ -1,16 +1,19 @@
 import "../styles/globals.css";
-import dynamic from "next/dynamic";
 import MainLayout from "../layout/main";
 import { AuthContextProvider } from "./context/authContext";
-// const PlayerWithNoSSR = dynamic(() => import("../components/Player"), {
-//   ssr: false,
-// });
+import AdminLayout from "../layout/adminLayout";
 
 function MyApp({ Component, pageProps }) {
   return (
     <>
       {Component.getLayout ? (
-        Component.getLayout(<Component {...pageProps} />)
+        Component.getLayout(
+          <AuthContextProvider>
+            <AdminLayout>
+              <Component {...pageProps} />
+            </AdminLayout>
+          </AuthContextProvider>
+        )
       ) : (
         <AuthContextProvider>
           <MainLayout>
