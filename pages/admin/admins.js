@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React, { useContext, useState, useEffect } from "react";
 import AlertMessage from "../../components/alertMessage";
 import AuthContext from "../../pages/context/authContext";
@@ -20,12 +21,11 @@ const Admin = () => {
         setItem(data);
         setLoading(false);
       });
-  }, []);
+  }, [message, hideMessage, loggedIn]);
 
-  const DeleteHandler = (file_id) => {
-    // console.log(file_id);
+  const DeleteHandler = (user_id) => {
     try {
-      fetch(`https://unicef.koompi.app/private/api/delete/${file_id}`, {
+      fetch(`https://unicef.koompi.app/private/api/admin/delete/${user_id}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${loggedIn}`,
@@ -43,6 +43,7 @@ const Admin = () => {
       console.log(error);
     }
   };
+  console.log(item);
 
   return (
     <div className="container mx-auto mt-12">
@@ -73,13 +74,18 @@ const Admin = () => {
                           <td>{res.display_name}</td>
                           <td>{res.username}</td>
                           <td>{res.role}</td>
-                          <td>
+                          <td className="space-x-2">
                             <button
                               className="bg-red-600 px-3 text-pink-100 rounded-md text-sm"
-                              onClick={() => DeleteHandler(res.file_id)}
+                              onClick={() => DeleteHandler(res.user_id)}
                             >
                               Delete
                             </button>
+                            <Link href={`/admin/${res.user_id}`}>
+                              <button className="bg-green-600 px-3 text-pink-100 rounded-md text-sm">
+                                Edit
+                              </button>
+                            </Link>
                           </td>
                         </tr>
                       </>

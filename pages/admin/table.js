@@ -16,7 +16,7 @@ const Table = () => {
         setItem(data);
         setLoading(false);
       });
-  }, []);
+  }, [message, loggedIn, hideMessage]);
 
   const DeleteHandler = (file_id) => {
     // console.log(file_id);
