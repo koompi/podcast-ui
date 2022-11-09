@@ -1,7 +1,7 @@
 import Link from "next/link";
 import React, { useContext, useState, useEffect } from "react";
 import AlertMessage from "../../components/alertMessage";
-import AuthContext from "../../pages/context/authContext";
+import AuthContext from "../../components/context/authContext";
 import Notfound from "../404";
 
 const Admin = () => {
@@ -41,10 +41,9 @@ const Admin = () => {
         setLoading(false);
       });
     } catch (error) {
-      console.log(error);
+      throw error;
     }
   };
-  console.log(item);
 
   return (
     <div className="container mx-auto mt-12">

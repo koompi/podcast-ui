@@ -8,7 +8,6 @@ const Login = () => {
 
   const [message, setMessage] = useState("");
   const [hideMessage, setHideMessage] = useState(false);
-  // const { loggedIn, getLoggedIn } = useContext(AuthContext);
   const [value, setValue] = useState({
     username: "",
     password: "",
@@ -36,12 +35,7 @@ const Login = () => {
             router.push("/admin/table");
           }, 3000);
           setLoading(false);
-          // console.log(res);
         });
-      // await axios.post(`http://localhost:9090/api/login`, value, config);
-
-      // await getLoggedIn();
-      //   history("/");
     } catch (error) {
       setMessage("incorrect username or password");
       setLoading(true);

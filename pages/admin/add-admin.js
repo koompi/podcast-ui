@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import AuthContext from "../../pages/context/authContext";
+import AuthContext from "../../components/context/authContext";
 import AlertMessage from "../../components/alertMessage";
 import Notfound from "../404";
 
@@ -46,10 +46,8 @@ const Addamdin = () => {
         });
         setLoading(false);
       });
-      // const data = await response.json();
-      console.log(response);
     } catch (error) {
-      console.log(error);
+      throw error;
     }
   };
   return (

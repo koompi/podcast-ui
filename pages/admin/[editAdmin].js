@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
-import AuthContext from "../context/authContext";
+import AuthContext from "../../components/context/authContext";
 import AlertMessage from "../../components/alertMessage";
 import { useRouter } from "next/router";
 import Notfound from "../404";
@@ -22,7 +22,6 @@ const Editamdin = () => {
   const { display_name, username, password, role } = value;
   const handleChange = (e) => {
     setValue({ ...value, [e.target.name]: e.target.value });
-    console.log(value.role);
   };
 
   useEffect(() => {
@@ -39,7 +38,7 @@ const Editamdin = () => {
         setLoading(false);
       });
   }, [editAdmin, loggedIn]);
-  console.log(item);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -70,10 +69,8 @@ const Editamdin = () => {
         setLoading(false);
         router.push("/admin/admins");
       });
-      // const data = await response.json();
-      // console.log(response);
     } catch (error) {
-      console.log(error);
+      throw error;
     }
   };
   return (

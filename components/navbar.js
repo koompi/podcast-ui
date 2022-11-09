@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import AuthContext from "../pages/context/authContext";
+import AuthContext from "./context/authContext";
 import Logout from "./logout";
 import jwt from "jsonwebtoken";
 

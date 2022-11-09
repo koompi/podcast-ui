@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import AlertMessage from "../../components/alertMessage";
-import AuthContext from "../../pages/context/authContext";
+import AuthContext from "../../components/context/authContext";
 import { useRouter } from "next/router";
 import Notfound from "../404";
 
@@ -21,12 +21,7 @@ const Table = () => {
       });
   }, [message, loggedIn, hideMessage]);
 
-  // if (!decode) {
-  //   router.push("/login");
-  // }
-
   const DeleteHandler = (file_id) => {
-    // console.log(file_id);
     try {
       fetch(`https://unicef.koompi.app/private/api/delete/${file_id}`, {
         method: "DELETE",
@@ -43,7 +38,7 @@ const Table = () => {
         setLoading(false);
       });
     } catch (error) {
-      console.log(error);
+      throw error;
     }
   };
 

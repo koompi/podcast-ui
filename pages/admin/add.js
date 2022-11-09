@@ -1,11 +1,9 @@
 import React, { useState, useEffect, useRef, useContext } from "react";
-import AuthContext from "../../pages/context/authContext";
+import AuthContext from "../../components/context/authContext";
 import Notfound from "../404";
 
 const Add = () => {
   const { loggedIn } = useContext(AuthContext);
-  //   console.log(jwt_decode(loggedIn));
-
   const [item, setItem] = useState([]);
   const [grade, setGrade] = useState("");
   const [showSubject, setShowSubject] = useState([]);
@@ -56,10 +54,8 @@ const Add = () => {
       setGrade("");
       setFile("");
       setThumbnail("");
-      // const data = await response.json();
-      console.log(response);
     } catch (error) {
-      console.log(error);
+      throw error;
     }
   };
 

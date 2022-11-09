@@ -16,7 +16,7 @@ export default function App() {
   const [loading, setLoading] = useState(false);
   const [item, setItem] = useState({});
   const { grade, subject, id } = router.query;
-  console.log(item);
+
   useEffect(() => {
     setLoading(true);
     fetch(
