@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useState } from "react";
+import React, { createContext, use, useEffect, useState } from "react";
 import jwt_decode from "jwt-decode";
 import { useRouter } from "next/router";
 import jwt from "jsonwebtoken";
@@ -10,12 +10,13 @@ const AuthContext = createContext();
 function AuthContextProvider(props) {
   const router = useRouter();
   const [loggedIn, setLoggedIn] = useState("");
-  const [decode, setDecode] = useState({});
+  const [token, setToken] = useState({});
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   async function getLoggedIn() {
     const token = localStorage.getItem("token");
     setLoggedIn(token);
+    // setDecode(jwt.decode(token));
     // const decode = jwt.decode(token);
     // setDecode(decode);
     // console.log(decode, "toekn");
@@ -26,6 +27,18 @@ function AuthContextProvider(props) {
   useEffect(() => {
     getLoggedIn();
   }, [getLoggedIn]);
+
+  useEffect(() => {
+    const tokenn = localStorage.getItem("token");
+    const decode = jwt.decode(tokenn);
+    setToken(decode);
+    if (token) {
+      if (token.exp * 1000 < Date.now()) {
+        localStorage.removeItem("token");
+        window.location.replace("/");
+      }
+    }
+  }, [loggedIn]);
 
   return (
     <AuthContext.Provider value={{ loggedIn, getLoggedIn }}>

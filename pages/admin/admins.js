@@ -2,6 +2,7 @@ import Link from "next/link";
 import React, { useContext, useState, useEffect } from "react";
 import AlertMessage from "../../components/alertMessage";
 import AuthContext from "../../pages/context/authContext";
+import Notfound from "../404";
 
 const Admin = () => {
   const { loggedIn } = useContext(AuthContext);
@@ -47,10 +48,14 @@ const Admin = () => {
 
   return (
     <div className="container mx-auto mt-12">
-      <h1 className="text-gray-700 text-4xl mb-12 underline">All Admins</h1>
-      {hideMessage ? <AlertMessage message={message} /> : ""}
+      {loggedIn && (
+        <>
+          <h1 className="text-gray-700 text-4xl mb-12 underline">All Admins</h1>
+          {hideMessage ? <AlertMessage message={message} /> : ""}
+        </>
+      )}
       {loading ? (
-        "loading..."
+        <Notfound />
       ) : (
         <>
           {loggedIn && (

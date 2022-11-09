@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import AuthContext from "../../pages/context/authContext";
 import AlertMessage from "../../components/alertMessage";
+import Notfound from "../404";
 
 const Addamdin = () => {
   const { loggedIn } = useContext(AuthContext);
@@ -123,7 +124,9 @@ const Addamdin = () => {
           </form>
         </>
       ) : (
-        <>nothing</>
+        <>
+          <Notfound />
+        </>
       )}
     </div>
   );

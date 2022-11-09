@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef, useContext } from "react";
 import AuthContext from "../../pages/context/authContext";
+import Notfound from "../404";
 
 const Add = () => {
   const { loggedIn } = useContext(AuthContext);
@@ -33,7 +34,6 @@ const Add = () => {
     const tokenn = localStorage.getItem("token");
     setToken(tokenn);
   }, []);
-  console.log(token);
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -65,7 +65,13 @@ const Add = () => {
 
   return (
     <div className="container mx-auto mt-12 ">
-      <h1 className="text-gray-700 text-4xl mb-12 underline">Add Content</h1>
+      {loggedIn && (
+        <>
+          <h1 className="text-gray-700 text-4xl mb-12 underline">
+            Add Content
+          </h1>
+        </>
+      )}
       {loggedIn ? (
         <>
           <form onSubmit={handleSubmit}>
@@ -251,7 +257,9 @@ const Add = () => {
           </form>
         </>
       ) : (
-        <>nothing</>
+        <>
+          <Notfound />
+        </>
       )}
     </div>
   );

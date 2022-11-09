@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import AlertMessage from "../../components/alertMessage";
 import AuthContext from "../../pages/context/authContext";
 import { useRouter } from "next/router";
+import Notfound from "../404";
 
 const Table = () => {
   const router = useRouter();
@@ -48,8 +49,15 @@ const Table = () => {
 
   return (
     <div className="container mx-auto mt-12">
-      <h1 className="text-gray-700 text-4xl mb-12 underline">All Contents</h1>
-      {hideMessage ? <AlertMessage message={message} /> : ""}
+      {loggedIn && (
+        <>
+          <h1 className="text-gray-700 text-4xl mb-12 underline">
+            All Contents
+          </h1>
+          {hideMessage ? <AlertMessage message={message} /> : ""}
+        </>
+      )}
+
       {loading ? (
         "loading..."
       ) : (
@@ -91,7 +99,11 @@ const Table = () => {
               </table>
             </div>
           )}
-          {!loggedIn && <div>notig</div>}
+          {!loggedIn && (
+            <div>
+              <Notfound />
+            </div>
+          )}
         </>
       )}
     </div>

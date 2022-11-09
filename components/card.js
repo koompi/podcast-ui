@@ -15,16 +15,16 @@ const Card = ({
 }) => {
   return (
     <div className="show-icon bg-base-200 p-3 rounded-lg">
-      <div
-        className="w-full aspect-square bg-slate-500 rounded-xl bg-cover bg-center flex place-content-center place-items-center"
-        style={{
-          // backgroundImage: `url("http://placeimg.com/640/480/abstract")`,
-          backgroundImage: `url("https://unicef.koompi.app/${location}/${thumbnailName}")`,
-        }}
-      >
-        <div className="icon hidden btn glass btn-circle p-3">
-          <Link href={`/grade/${grade}/${subject}/${id}`}>
-            {" "}
+      <Link href={`/grade/${grade}/${subject}/${id}`}>
+        <div
+          className="w-full aspect-square bg-slate-500 rounded-xl bg-cover bg-center flex place-content-center place-items-center"
+          style={{
+            // backgroundImage: `url("http://placeimg.com/640/480/abstract")`,
+            backgroundImage: `url("https://unicef.koompi.app/${location}/${thumbnailName}")`,
+          }}
+        >
+          <div className="icon hidden btn glass btn-circle p-3">
+            {/* <Link href={`/grade/${grade}/${subject}/${id}`}> */}{" "}
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
@@ -37,9 +37,10 @@ const Card = ({
                 clipRule="evenodd"
               />
             </svg>
-          </Link>
+            {/* </Link> */}
+          </div>
         </div>
-      </div>
+      </Link>
       <div className="py-2">
         {/* <div className="badge badge-ghost">44k</div> */}
         <div className="flex space-x-2 mb-1">

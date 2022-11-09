@@ -1,11 +1,27 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import AuthContext from "../pages/context/authContext";
 import Logout from "./logout";
+import jwt from "jsonwebtoken";
 
 const Navbar = () => {
+  const [token, setToken] = useState({});
   const { loggedIn } = useContext(AuthContext);
+  useEffect(() => {
+    const tokenn = localStorage.getItem("token");
+    const decode = jwt.decode(tokenn);
+    setToken(decode);
+  }, []);
+
+  useEffect(() => {
+    if (token) {
+      if (token.exp * 1000 < Date.now()) {
+        localStorage.removeItem("token");
+        window.location.replace("/");
+      }
+    }
+  }, [token]);
   return (
     <div
       // className="navbar bg-base-300 px-20 flex place-items-center place-content-center"

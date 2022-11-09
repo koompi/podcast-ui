@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import AuthContext from "../context/authContext";
 import AlertMessage from "../../components/alertMessage";
 import { useRouter } from "next/router";
+import Notfound from "../404";
 
 const Editamdin = () => {
   const router = useRouter();
@@ -153,7 +154,9 @@ const Editamdin = () => {
           </form>
         </>
       ) : (
-        <>nothing</>
+        <>
+          <Notfound />
+        </>
       )}
     </div>
   );
