@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import AuthContext from "../pages/context/authContext";
+import Logout from "./logout";
 
 const Navbar = () => {
   const { loggedIn } = useContext(AuthContext);
@@ -37,15 +38,12 @@ const Navbar = () => {
             >
               <li>
                 <Link href="/admin/table" className="justify-between">
-                  Table
+                  Contents
                   <span className="badge">New</span>
                 </Link>
               </li>
               <li>
-                <Link href="/admin/add">Add Content</Link>
-              </li>
-              <li>
-                <a>Logout</a>
+                <Logout />
               </li>
             </ul>
           ) : (

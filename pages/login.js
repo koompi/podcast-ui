@@ -1,8 +1,13 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { useRouter } from "next/router";
+import AlertMessage from "../components/alertMessage";
 
 const Login = () => {
+  const router = useRouter();
+
   const [message, setMessage] = useState("");
+  const [hideMessage, setHideMessage] = useState(false);
   // const { loggedIn, getLoggedIn } = useContext(AuthContext);
   const [value, setValue] = useState({
     username: "",
@@ -23,26 +28,33 @@ const Login = () => {
         .post("https://unicef.koompi.app/public/api/login", value)
         .then((res) => {
           localStorage.setItem("token", res.data);
-          console.log(res);
+          setMessage("Add Successfully");
+          setLoading(true);
+          setHideMessage(true);
+          setTimeout(() => {
+            setHideMessage(false);
+            router.push("/admin/table");
+          }, 3000);
+          setLoading(false);
+          // console.log(res);
         });
       // await axios.post(`http://localhost:9090/api/login`, value, config);
 
       // await getLoggedIn();
       //   history("/");
     } catch (error) {
+      setMessage("incorrect username or password");
+      setLoading(true);
+      setHideMessage(true);
+      setTimeout(() => {
+        setHideMessage(false);
+      }, 3000);
       setLoading(false);
-      setMessage("Incorrect Username or Password");
     }
   };
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      message;
-    }, 1000);
-    return () => clearTimeout(timer);
-  }, [message]);
   return (
     <div>
-      <center>{message}</center>
+      {hideMessage ? <AlertMessage message={message} /> : ""}
       <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
         <div className="bg-base-300 p-6 rounded-lg ">
           <h1 className="text-center font-bold text-gray-900 text-2xl uppercase">

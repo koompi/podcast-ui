@@ -53,72 +53,78 @@ const Addamdin = () => {
   };
   return (
     <div className="container mx-auto mt-12">
-      {hideMessage ? <AlertMessage message={message} /> : ""}
-      <h1 className="text-gray-700 text-4xl mb-12 underline">Add Admins</h1>
-      <form onSubmit={handleSubmit}>
-        <div className="mb-6">
-          <label className="text-bold block">Display Name</label>
-          <input
-            name="display_name"
-            value={display_name}
-            onChange={handleChange}
-            className="border-gray-200 border p-2 w-96 rounded-lg"
-            placeholder="Input Display name"
-          />
-        </div>
-        <div className="mb-6">
-          <label className="text-bold block">Username</label>
-          <input
-            name="username"
-            value={username}
-            onChange={handleChange}
-            className="border-gray-200 border p-2 w-96 rounded-lg"
-            placeholder="Input username"
-          />
-        </div>
-        <div className="mb-6">
-          <label className="text-bold block">Password</label>
-          <input
-            name="password"
-            value={password}
-            onChange={handleChange}
-            className="border-gray-200 border p-2 w-96 rounded-lg"
-            placeholder="Input Password"
-          />
-        </div>
-        <div className="mb-6">
-          <label className="text-bold block">Role</label>
+      {loggedIn ? (
+        <>
+          {hideMessage ? <AlertMessage message={message} /> : ""}
+          <h1 className="text-gray-700 text-4xl mb-12 underline">Add Admins</h1>
+          <form onSubmit={handleSubmit}>
+            <div className="mb-6">
+              <label className="text-bold block">Display Name</label>
+              <input
+                name="display_name"
+                value={display_name}
+                onChange={handleChange}
+                className="border-gray-200 border p-2 w-96 rounded-lg"
+                placeholder="Input Display name"
+              />
+            </div>
+            <div className="mb-6">
+              <label className="text-bold block">Username</label>
+              <input
+                name="username"
+                value={username}
+                onChange={handleChange}
+                className="border-gray-200 border p-2 w-96 rounded-lg"
+                placeholder="Input username"
+              />
+            </div>
+            <div className="mb-6">
+              <label className="text-bold block">Password</label>
+              <input
+                name="password"
+                value={password}
+                onChange={handleChange}
+                className="border-gray-200 border p-2 w-96 rounded-lg"
+                placeholder="Input Password"
+              />
+            </div>
+            <div className="mb-6">
+              <label className="text-bold block">Role</label>
 
-          <select
-            className="border-gray-200 border p-2 w-96 rounded-lg"
-            name="role"
-            value={role}
-            onChange={handleChange}
-          >
-            <option value="Admin">Admin</option>
-            <option value="Root">Root</option>
-          </select>
-          {/* <input
+              <select
+                className="border-gray-200 border p-2 w-96 rounded-lg"
+                name="role"
+                value={role}
+                onChange={handleChange}
+              >
+                <option value="Admin">Admin</option>
+                <option value="Root">Root</option>
+              </select>
+              {/* <input
             name="role"
             value={role}
             onChange={handleChange}
             className="border-gray-200 border p-2 w-96 rounded-lg"
             placeholder="Input Role"
           /> */}
-        </div>
-        {username === "" ||
-        password === "" ||
-        display_name === "" ||
-        role === "" ? (
-          <button disabled className="btn btn-success w-96">
-            Submit
-          </button>
-        ) : (
-          <button type="submit" className="btn btn-success w-96">
-            {loading ? "loading..." : "Submit"}
-          </button>
-        )}
-      </form>
+            </div>
+            {username === "" ||
+            password === "" ||
+            display_name === "" ||
+            role === "" ? (
+              <button disabled className="btn btn-success w-96">
+                Submit
+              </button>
+            ) : (
+              <button type="submit" className="btn btn-success w-96">
+                {loading ? "loading..." : "Submit"}
+              </button>
+            )}
+          </form>
+        </>
+      ) : (
+        <>nothing</>
+      )}
     </div>
   );
 };

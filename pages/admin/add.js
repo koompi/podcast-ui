@@ -51,6 +51,11 @@ const Add = () => {
           },
         }
       );
+      setSubject("");
+      setType("");
+      setGrade("");
+      setFile("");
+      setThumbnail("");
       // const data = await response.json();
       console.log(response);
     } catch (error) {

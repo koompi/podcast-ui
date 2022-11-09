@@ -1,9 +1,11 @@
 import React, { useContext, useState, useEffect } from "react";
 import AlertMessage from "../../components/alertMessage";
 import AuthContext from "../../pages/context/authContext";
+import { useRouter } from "next/router";
 
 const Table = () => {
-  const { loggedIn } = useContext(AuthContext);
+  const router = useRouter();
+  const { loggedIn, decode } = useContext(AuthContext);
   const [item, setItem] = useState([]);
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
@@ -17,6 +19,10 @@ const Table = () => {
         setLoading(false);
       });
   }, [message, loggedIn, hideMessage]);
+
+  // if (!decode) {
+  //   router.push("/login");
+  // }
 
   const DeleteHandler = (file_id) => {
     // console.log(file_id);

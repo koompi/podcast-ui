@@ -5,16 +5,18 @@ import "react-h5-audio-player/lib/styles.css";
 import { useRouter } from "next/router";
 import { Player } from "react-tuby";
 import "react-tuby/css/main.css";
+import dynamic from "next/dynamic";
 
-import { Document, Page } from "react-pdf";
-// import PDFViewer from "pdf-viewer-reactjs";
+const PDFViewer = dynamic(() => import("../../../../components/pdf"), {
+  ssr: false,
+});
 
 export default function App() {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [item, setItem] = useState({});
   const { grade, subject, id } = router.query;
-
+  console.log(item);
   useEffect(() => {
     setLoading(true);
     fetch(
@@ -38,7 +40,12 @@ export default function App() {
       currentTrack < musicTracks.length - 1 ? currentTrack + 1 : 0
     );
   };
+  const [numPages, setNumPages] = useState(null);
+  const [pageNumber, setPageNumber] = useState(1);
 
+  function onDocumentLoadSuccess({ numPages }) {
+    setNumPages(numPages);
+  }
   return (
     <div>
       <br />
@@ -80,12 +87,11 @@ export default function App() {
               />
             </div>
           ) : (
-            // <PDFViewer
-            //   document={{
-            //     url: "https://arxiv.org/pdf/quant-ph/0410100.pdf",
-            //   }}
-            // />
-            "pdf"
+            <>
+              <PDFViewer
+                fileUrl={`https://unicef.koompi.app/${item.location}/${item.filename}`}
+              />
+            </>
           )}
         </>
       )}

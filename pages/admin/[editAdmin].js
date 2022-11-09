@@ -77,65 +77,68 @@ const Editamdin = () => {
   };
   return (
     <div className="container mx-auto mt-12">
-      {hideMessage ? <AlertMessage message={message} /> : ""}
-      <h1 className="text-gray-700 text-4xl mb-12 underline">Edit Admin</h1>
-      <form onSubmit={handleSubmit}>
-        <div className="mb-6">
-          <label className="text-bold block">Display Name</label>
+      {loggedIn ? (
+        <>
+          {" "}
+          {hideMessage ? <AlertMessage message={message} /> : ""}
+          <h1 className="text-gray-700 text-4xl mb-12 underline">Edit Admin</h1>
+          <form onSubmit={handleSubmit}>
+            <div className="mb-6">
+              <label className="text-bold block">Display Name</label>
 
-          <input
-            name="display_name"
-            defaultValue={item.display_name}
-            onChange={handleChange}
-            className="border-gray-200 border p-2 w-96 rounded-lg"
-            placeholder="Input Display name"
-          />
-        </div>
-        <div className="mb-6">
-          <label className="text-bold block">Username</label>
-          <input
-            name="username"
-            defaultValue={item.username}
-            onChange={handleChange}
-            className="border-gray-200 border p-2 w-96 rounded-lg"
-            placeholder="Input username"
-          />
-        </div>
-        <div className="mb-6">
-          <label className="text-bold block">Password</label>
-          <input
-            name="password"
-            defaultValue={item.password}
-            onChange={handleChange}
-            className="border-gray-200 border p-2 w-96 rounded-lg"
-            placeholder="Unchnaged"
-          />
-        </div>
-        <div className="mb-6">
-          <label className="text-bold block">Role</label>
+              <input
+                name="display_name"
+                defaultValue={item.display_name}
+                onChange={handleChange}
+                className="border-gray-200 border p-2 w-96 rounded-lg"
+                placeholder="Input Display name"
+              />
+            </div>
+            <div className="mb-6">
+              <label className="text-bold block">Username</label>
+              <input
+                name="username"
+                defaultValue={item.username}
+                onChange={handleChange}
+                className="border-gray-200 border p-2 w-96 rounded-lg"
+                placeholder="Input username"
+              />
+            </div>
+            <div className="mb-6">
+              <label className="text-bold block">Password</label>
+              <input
+                name="password"
+                defaultValue={item.password}
+                onChange={handleChange}
+                className="border-gray-200 border p-2 w-96 rounded-lg"
+                placeholder="Unchnaged"
+              />
+            </div>
+            <div className="mb-6">
+              <label className="text-bold block">Role</label>
 
-          <select
-            className="border-gray-200 border p-2 w-96 rounded-lg"
-            name="role"
-            defaultValue={item.role}
-            onChange={handleChange}
-          >
-            <option value={item.role === "Admin" ? "Root" : "Admin"}>
-              {item.role === "Admin" ? "Admin" : "Root"}
-            </option>
-            <option value={item.role === "Admin" ? "Admin" : "Root"}>
-              {item.role === "Admin" ? "Root" : "Admin"}
-            </option>
-          </select>
-          {/* <input
+              <select
+                className="border-gray-200 border p-2 w-96 rounded-lg"
+                name="role"
+                defaultValue={item.role}
+                onChange={handleChange}
+              >
+                <option value={item.role === "Admin" ? "Root" : "Admin"}>
+                  {item.role === "Admin" ? "Admin" : "Root"}
+                </option>
+                <option value={item.role === "Admin" ? "Admin" : "Root"}>
+                  {item.role === "Admin" ? "Root" : "Admin"}
+                </option>
+              </select>
+              {/* <input
             name="role"
             value={role}
             onChange={handleChange}
             className="border-gray-200 border p-2 w-96 rounded-lg"
             placeholder="Input Role"
           /> */}
-        </div>
-        {/* {username === "" ||
+            </div>
+            {/* {username === "" ||
         password === "" ||
         display_name === "" ||
         role === "" ? (
@@ -143,11 +146,15 @@ const Editamdin = () => {
             Update
           </button>
         ) : ( */}
-        <button type="submit" className="btn btn-success w-96">
-          {loading ? "loading..." : "Update"}
-        </button>
-        {/* )} */}
-      </form>
+            <button type="submit" className="btn btn-success w-96">
+              {loading ? "loading..." : "Update"}
+            </button>
+            {/* )} */}
+          </form>
+        </>
+      ) : (
+        <>nothing</>
+      )}
     </div>
   );
 };
