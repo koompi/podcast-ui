@@ -5,12 +5,20 @@ import axios from "axios";
 export default function Home() {
   const [loading, setLoading] = useState(false);
   const [item, setItem] = useState([]);
+  // useEffect(() => {
+  //   axios.get("https://unicefbackend.koompi.app/public/api/query").then((res) => {
+  //     setItem(res.data);
+  //     setLoading(true);
+  //   });
+  // }, []);
   useEffect(() => {
-    axios.get("https://unicef.koompi.app/public/api/query").then((res) => {
-      setItem(res.data);
-      setLoading(true);
-    });
+    fetch(`https://unicefbackend.koompi.app/public/api/query`)
+      .then((res) => res.json())
+      .then((data) => {
+        setItem(data);
+      });
   }, []);
+
   return (
     <>
       <br />

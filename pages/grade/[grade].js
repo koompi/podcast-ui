@@ -11,7 +11,7 @@ const Index = () => {
 
   // useEffect(() => {
   //   axios
-  //     .get(`https://unicef.koompi.app/public/api/query/${grade}`)
+  //     .get(`https://unicefbackend.koompi.app/public/api/query/${grade}`)
   //     .then((data) => {
   //       setLoading(true);
   //       setItem(data.data);
@@ -20,7 +20,7 @@ const Index = () => {
   // }, [grade]);
   useEffect(() => {
     setLoading(true);
-    fetch(`https://unicef.koompi.app/public/api/query/${grade}`)
+    fetch(`https://unicefbackend.koompi.app/public/api/query/${grade}`)
       .then((res) => res.json())
       .then((data) => {
         setItem(data);

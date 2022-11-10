@@ -12,7 +12,7 @@ const Admin = () => {
   const [hideMessage, setHideMessage] = useState(false);
   useEffect(() => {
     setLoading(true);
-    fetch(`https://unicef.koompi.app/private/api/admin/query`, {
+    fetch(`https://unicefbackend.koompi.app/private/api/admin/query`, {
       headers: {
         Authorization: `Bearer ${loggedIn}`,
       },
@@ -26,12 +26,15 @@ const Admin = () => {
 
   const DeleteHandler = (user_id) => {
     try {
-      fetch(`https://unicef.koompi.app/private/api/admin/delete/${user_id}`, {
-        method: "DELETE",
-        headers: {
-          Authorization: `Bearer ${loggedIn}`,
-        },
-      }).then((res) => {
+      fetch(
+        `https://unicefbackend.koompi.app/private/api/admin/delete/${user_id}`,
+        {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${loggedIn}`,
+          },
+        }
+      ).then((res) => {
         setMessage("Delete Successfully");
         setLoading(true);
         setHideMessage(true);
@@ -50,7 +53,15 @@ const Admin = () => {
       {loggedIn && (
         <>
           <h1 className="text-gray-700 text-4xl mb-12 underline">All Admins</h1>
-          {hideMessage ? <AlertMessage message={message} /> : ""}
+          {hideMessage ? (
+            <AlertMessage
+              message={message}
+              bg="alert alert-success"
+              text="text-green-900"
+            />
+          ) : (
+            ""
+          )}
         </>
       )}
       {loading ? (

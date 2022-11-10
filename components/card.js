@@ -20,7 +20,7 @@ const Card = ({
           className="w-full aspect-square bg-slate-500 rounded-xl bg-cover bg-center flex place-content-center place-items-center"
           style={{
             // backgroundImage: `url("http://placeimg.com/640/480/abstract")`,
-            backgroundImage: `url("https://unicef.koompi.app/${location}/${thumbnailName}")`,
+            backgroundImage: `url("https://unicefbackend.koompi.app/${location}/${thumbnailName}")`,
           }}
         >
           <div className="icon hidden btn glass btn-circle p-3">

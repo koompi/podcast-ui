@@ -26,12 +26,15 @@ const Editamdin = () => {
 
   useEffect(() => {
     setLoading(true);
-    fetch(`https://unicef.koompi.app/private/api/admin/query/${editAdmin}`, {
-      headers: {
-        Authorization: `Bearer ${loggedIn}`,
-        "Content-Type": "application/json",
-      },
-    })
+    fetch(
+      `https://unicefbackend.koompi.app/private/api/admin/query/${editAdmin}`,
+      {
+        headers: {
+          Authorization: `Bearer ${loggedIn}`,
+          "Content-Type": "application/json",
+        },
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         setItem(data);
@@ -43,7 +46,7 @@ const Editamdin = () => {
     e.preventDefault();
     try {
       await fetch(
-        `https://unicef.koompi.app/private/api/admin/edit/${editAdmin}`,
+        `https://unicefbackend.koompi.app/private/api/admin/edit/${editAdmin}`,
         {
           method: "PUT",
           body: JSON.stringify({
@@ -52,7 +55,7 @@ const Editamdin = () => {
               display_name === "" ? item.display_name : display_name,
             username: username === "" ? item.username : username,
             // role: role,
-            // role: role === "Admin" ? "Admin" : role === "Root" ? "Root" : "",
+            role: role === "Admin" ? "Admin" : role === "Root" ? "Root" : "",
           }),
           headers: {
             Authorization: `Bearer ${loggedIn}`,
@@ -60,14 +63,14 @@ const Editamdin = () => {
           },
         }
       ).then((res) => {
-        setMessage("Add Successfully");
+        setMessage("Update Successfully");
         setLoading(true);
         setHideMessage(true);
         setTimeout(() => {
           setHideMessage(false);
+          setLoading(false);
+          router.push("/admin/admins");
         }, 3000);
-        setLoading(false);
-        router.push("/admin/admins");
       });
     } catch (error) {
       throw error;

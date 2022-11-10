@@ -8,16 +8,23 @@ const Sidebar = () => {
   const openModal = (_key) => {
     setState({ isOpen: !state.isOpen, postId: _key });
   };
+  // useEffect(() => {
+  //   axios.get("https://unicefbackend.koompi.app/public/api/sidebar").then((res) => {
+  //     setItem(res.data);
+  //   });
+  // }, []);
   useEffect(() => {
-    axios.get("https://unicef.koompi.app/public/api/sidebar").then((res) => {
-      setItem(res.data);
-    });
+    fetch(`https://unicefbackend.koompi.app/public/api/sidebar`)
+      .then((res) => res.json())
+      .then((data) => {
+        setItem(data);
+      });
   }, []);
 
   return (
     <div>
       <div className="w-64" aria-label="Sidebar">
-        <div className="overflow-y-auto py-4 px-3 h-screen bg-gray-50 rounded ">
+        <div className="overflow-y-auto py-4 px-3 h-screen bg-base-300 rounded ">
           {item.map((res, index) => {
             return (
               <div key={index}>
@@ -82,7 +89,7 @@ const Sidebar = () => {
                                 href={`/grade/${res.category_id}/${ress.subcategory_id}`}
                                 className={
                                   state.postId === res.category_id
-                                    ? "flex items-center p-2 pl-11 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                                    ? " flex items-center p-2 pl-11 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 "
                                     : "hidden"
                                 }
                               >

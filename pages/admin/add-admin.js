@@ -14,6 +14,8 @@ const Addamdin = () => {
     password: "",
     role: "Admin",
   });
+  const [bg, setBg] = useState("");
+  const [text, setText] = useState("");
 
   const { display_name, username, password, role } = value;
   const handleChange = (e) => {
@@ -22,7 +24,7 @@ const Addamdin = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await fetch(`https://unicef.koompi.app/private/api/admin/add`, {
+      await fetch(`https://unicefbackend.koompi.app/private/api/admin/add`, {
         method: "POST",
         body: JSON.stringify({
           ...value,
@@ -33,6 +35,8 @@ const Addamdin = () => {
         },
       }).then((res) => {
         setMessage("Add Successfully");
+        setText("text-green-900");
+        setBg("alert alert-success");
         setLoading(true);
         setHideMessage(true);
         setTimeout(() => {
@@ -54,7 +58,12 @@ const Addamdin = () => {
     <div className="container mx-auto mt-12">
       {loggedIn ? (
         <>
-          {hideMessage ? <AlertMessage message={message} /> : ""}
+          {hideMessage ? (
+            <AlertMessage message={message} bg={bg} text={text} />
+          ) : (
+            ""
+          )}
+
           <h1 className="text-gray-700 text-4xl mb-12 underline">Add Admins</h1>
           <form onSubmit={handleSubmit}>
             <div className="mb-6">

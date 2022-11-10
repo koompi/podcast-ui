@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 import { Player } from "react-tuby";
 import "react-tuby/css/main.css";
 import dynamic from "next/dynamic";
+import Link from "next/link";
 
 const PDFViewer = dynamic(() => import("../../../../components/pdf"), {
   ssr: false,
@@ -20,7 +21,7 @@ export default function App() {
   useEffect(() => {
     setLoading(true);
     fetch(
-      `https://unicef.koompi.app/public/api/query/${grade}/${subject}/${id}`
+      `https://unicefbackend.koompi.app/public/api/query/${grade}/${subject}/${id}`
     )
       .then((res) => res.json())
       .then((data) => {
@@ -46,8 +47,22 @@ export default function App() {
   function onDocumentLoadSuccess({ numPages }) {
     setNumPages(numPages);
   }
+  console.log(item);
   return (
     <div>
+      <div className="text-sm breadcrumbs p-9">
+        <ul>
+          <li>
+            <Link href={`/grade/${grade}`}>{grade}</Link>
+          </li>
+          <li href="/">
+            <Link href="">{subject}</Link>
+          </li>
+          <li href="/">
+            <Link href="">{item.file_type}</Link>
+          </li>
+        </ul>
+      </div>
       <br />
       {loading ? (
         "loading..."
@@ -60,7 +75,7 @@ export default function App() {
               src={[
                 {
                   quality: "1080p",
-                  url: `https://unicef.koompi.app/${item.location}/${item.filename}`,
+                  url: `https://unicefbackend.koompi.app/${item.location}/${item.filename}`,
                 },
               ]}
               keyboardShortcut={false}
@@ -68,18 +83,26 @@ export default function App() {
               {(ref, props) => <video ref={ref} {...props} autoPlay />}
             </Player>
           ) : item.file_type === "Audio" ? (
-            <div className="flex place-content-center place-items-center">
+            <div className="flex place-content-center place-items-center absolute top-56 right-[600px]">
               <AudioPlayer
                 className="rounded-xl"
                 style={{ width: "500px" }}
                 //   src={musicTracks[trackIndex].src}
-                src={`https://unicef.koompi.app/${item.location}/${item.filename}`}
+                src={`https://unicefbackend.koompi.app/${item.location}/${item.filename}`}
                 showSkipControls={true}
                 showJumpControls={false}
                 header={
-                  <div className="flex place-content-center place-items-center">
-                    <div className="cd"></div>
+                  <div>
+                    <div className="flex justify-center ">
+                      <img
+                        className=""
+                        src={`https://unicefbackend.koompi.app/${item.thumbnail.thumbnail_location}/${item.thumbnail.thumbnail_name}`}
+                      />
+                    </div>
                   </div>
+                  // <div className="flex place-content-center place-items-center">
+                  //   <div className="cd"></div>
+                  // </div>
                 }
                 onClickPrevious={handleClickPrevious}
                 onClickNext={handleClickNext}
@@ -88,9 +111,11 @@ export default function App() {
             </div>
           ) : (
             <>
-              <PDFViewer
-                fileUrl={`https://unicef.koompi.app/${item.location}/${item.filename}`}
-              />
+              <div className="flex justify-center">
+                <PDFViewer
+                  fileUrl={`https://unicefbackend.koompi.app/${item.location}/${item.filename}`}
+                />
+              </div>
             </>
           )}
         </>

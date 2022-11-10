@@ -11,14 +11,16 @@ const Subject = () => {
 
   // useEffect(() => {
   //   axios
-  //     .get(`https://unicef.koompi.app/public/api/query/${grade}/${subject}`)
+  //     .get(`https://unicefbackend.koompi.app/public/api/query/${grade}/${subject}`)
   //     .then((res) => {
   //       setItem(res.data);
   //     });
   // }, [grade, subject]);
   useEffect(() => {
     setLoading(true);
-    fetch(`https://unicef.koompi.app/public/api/query/${grade}/${subject}`)
+    fetch(
+      `https://unicefbackend.koompi.app/public/api/query/${grade}/${subject}`
+    )
       .then((res) => res.json())
       .then((data) => {
         setItem(data);

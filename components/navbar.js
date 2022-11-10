@@ -54,7 +54,7 @@ const Navbar = () => {
             >
               <li>
                 <Link href="/admin/table" className="justify-between">
-                  Contents
+                  Dashboard
                   <span className="badge">New</span>
                 </Link>
               </li>

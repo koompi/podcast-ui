@@ -1,13 +1,14 @@
 import React, { useState, useEffect, useRef, useContext } from "react";
 import AuthContext from "../../components/context/authContext";
 import Notfound from "../404";
+import AlertMessage from "../../components/alertMessage";
 
 const Add = () => {
   const { loggedIn } = useContext(AuthContext);
   const [item, setItem] = useState([]);
   const [grade, setGrade] = useState("");
   const [showSubject, setShowSubject] = useState([]);
-  //   const [loading, setLoading] = useState("");
+  const [loading, setLoading] = useState("");
   const [buttonGrade, setButtonGrade] = useState(false);
   const [buttonSubject, setButonSubject] = useState(false);
   const [subject, setSubject] = useState("");
@@ -17,14 +18,16 @@ const Add = () => {
   const [file, setFile] = useState(null);
   const [thumbnail, setThumbnail] = useState(null);
   const [token, setToken] = useState("");
+  const [message, setMessage] = useState("");
+  const [hideMessage, setHideMessage] = useState(false);
 
   useEffect(() => {
-    // setLoading(true);
-    fetch(`https://unicef.koompi.app/public/api/sidebar`)
+    setLoading(true);
+    fetch(`https://unicefbackend.koompi.app/public/api/sidebar`)
       .then((res) => res.json())
       .then((data) => {
         setItem(data);
-        // setLoading(false);
+        setLoading(false);
       });
   }, []);
 
@@ -35,11 +38,12 @@ const Add = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      setLoading(true);
       const form = new FormData();
       form.append("file", file);
       form.append("thumbnail", thumbnail);
       const response = await fetch(
-        `https://unicef.koompi.app/private/api/upload/${grade}/${subject}/${type}`,
+        `https://unicefbackend.koompi.app/private/api/upload/${grade}/${subject}/${type}`,
 
         {
           method: "POST",
@@ -49,11 +53,18 @@ const Add = () => {
           },
         }
       );
+      setMessage("Add Successfully");
+      setLoading(true);
+      setHideMessage(true);
+      setTimeout(() => {
+        setHideMessage(false);
+      }, 3000);
       setSubject("");
       setType("");
       setGrade("");
-      setFile("");
-      setThumbnail("");
+      setFile(null);
+      setThumbnail(null);
+      setLoading(false);
     } catch (error) {
       throw error;
     }
@@ -61,6 +72,7 @@ const Add = () => {
 
   return (
     <div className="container mx-auto mt-12 ">
+      {hideMessage ? <AlertMessage message={message} /> : ""}
       {loggedIn && (
         <>
           <h1 className="text-gray-700 text-4xl mb-12 underline">
@@ -247,7 +259,7 @@ const Add = () => {
               </button>
             ) : (
               <button type="submit" className="btn btn-success w-96">
-                Submit
+                {loading ? "loading..." : "Submit"}
               </button>
             )}
           </form>

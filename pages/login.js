@@ -5,7 +5,8 @@ import AlertMessage from "../components/alertMessage";
 
 const Login = () => {
   const router = useRouter();
-
+  const [bg, setBg] = useState("");
+  const [text, setText] = useState("");
   const [message, setMessage] = useState("");
   const [hideMessage, setHideMessage] = useState(false);
   const [value, setValue] = useState({
@@ -24,10 +25,12 @@ const Login = () => {
     setLoading(true);
     try {
       await axios
-        .post("https://unicef.koompi.app/public/api/login", value)
+        .post("https://unicefbackend.koompi.app/public/api/login", value)
         .then((res) => {
           localStorage.setItem("token", res.data);
-          setMessage("Add Successfully");
+          setMessage("login Successfully");
+          setText("text-green-900");
+          setBg("alert alert-success");
           setLoading(true);
           setHideMessage(true);
           setTimeout(() => {
@@ -38,6 +41,8 @@ const Login = () => {
         });
     } catch (error) {
       setMessage("incorrect username or password");
+      setText("text-red-900");
+      setBg("alert alert-error");
       setLoading(true);
       setHideMessage(true);
       setTimeout(() => {
@@ -48,7 +53,11 @@ const Login = () => {
   };
   return (
     <div>
-      {hideMessage ? <AlertMessage message={message} /> : ""}
+      {hideMessage ? (
+        <AlertMessage message={message} bg={bg} text={text} />
+      ) : (
+        ""
+      )}
       <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
         <div className="bg-base-300 p-6 rounded-lg ">
           <h1 className="text-center font-bold text-gray-900 text-2xl uppercase">

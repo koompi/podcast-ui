@@ -13,7 +13,7 @@ const Table = () => {
   const [hideMessage, setHideMessage] = useState(false);
   useEffect(() => {
     setLoading(true);
-    fetch(`https://unicef.koompi.app/public/api/query`)
+    fetch(`https://unicefbackend.koompi.app/public/api/query`)
       .then((res) => res.json())
       .then((data) => {
         setItem(data);
@@ -23,7 +23,7 @@ const Table = () => {
 
   const DeleteHandler = (file_id) => {
     try {
-      fetch(`https://unicef.koompi.app/private/api/delete/${file_id}`, {
+      fetch(`https://unicefbackend.koompi.app/private/api/delete/${file_id}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${loggedIn}`,
@@ -49,7 +49,15 @@ const Table = () => {
           <h1 className="text-gray-700 text-4xl mb-12 underline">
             All Contents
           </h1>
-          {hideMessage ? <AlertMessage message={message} /> : ""}
+          {hideMessage ? (
+            <AlertMessage
+              message={message}
+              bg="alert alert-success"
+              text="text-green-900"
+            />
+          ) : (
+            ""
+          )}
         </>
       )}
 
