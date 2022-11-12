@@ -43,11 +43,11 @@ const Card = ({
       </Link>
       <div className="py-2">
         {/* <div className="badge badge-ghost">44k</div> */}
-        <div className="flex space-x-2 mb-1">
+        <h1 className="font-semibold">{title}</h1>
+        <div className="flex space-x-2 mb-1 mt-2">
           <span className="badge badge-success">{gradeKh}</span>
           <span className="badge badge-success">{subjectKh}</span>
         </div>
-        <h1 className="font-semibold">{title}</h1>
       </div>
     </div>
   );

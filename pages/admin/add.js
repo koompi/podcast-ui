@@ -71,7 +71,7 @@ const Add = () => {
   };
 
   return (
-    <div className="container mx-auto mt-12 ">
+    <div className="container mx-auto mt-12 w-1/2">
       {hideMessage ? <AlertMessage message={message} /> : ""}
       {loggedIn && (
         <>
@@ -83,7 +83,7 @@ const Add = () => {
       {loggedIn ? (
         <>
           <form onSubmit={handleSubmit}>
-            <div className="mb-6 ">
+            <div className="mb-6 grid grid-cols-5 items-center">
               <h3>Grade</h3>
               <div className="relative mt-3">
                 <div
@@ -119,8 +119,8 @@ const Add = () => {
             </div>
             {/* =============>>subject<<============== */}
             {grade === "" ? (
-              <div className="mb-6">
-                <h4>Subject</h4>
+              <div className="mb-6 items-center grid grid-cols-5">
+                <h4 className="">Subject</h4>
                 <div
                   onClick={() => setButonSubject(!buttonSubject)}
                   className="bg-base-200 p-3 mt-2 w-96 rounded-lg cursor-not-allowed text-gray-300"
@@ -169,8 +169,8 @@ const Add = () => {
 
             {/* =================>>type<<============== */}
 
-            <div className="mb-6">
-              <h4>Type</h4>
+            <div className="mb-6 items-center grid grid-cols-5">
+              <h4 className="mt-4"> Type </h4>
               {grade === "" || subject === "" ? (
                 <div
                   onClick={() => setButonSubject(!buttonSubject)}
@@ -223,9 +223,9 @@ const Add = () => {
               )}
             </div>
             {/* //==========>>upload file<<================= */}
-            <div className="mb-6">
+            <div className="mb-6 items-center grid grid-cols-5">
               <label>Add File</label>
-              <br />
+
               <input
                 // onChange={uploadFileHandler}
                 name="file"
@@ -237,10 +237,8 @@ const Add = () => {
               />
             </div>
             {/* //==========>>upload thumbnail<<================= */}
-            <div className="mb-6">
+            <div className="mb-6 items-center grid grid-cols-5">
               <label>Add Thumbnail</label>
-              <br />
-
               <input
                 ref={inputRef}
                 type="file"

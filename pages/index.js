@@ -1,16 +1,9 @@
 import { useState, useEffect } from "react";
 import Card from "../components/card";
-import axios from "axios";
 
 export default function Home() {
   const [loading, setLoading] = useState(false);
   const [item, setItem] = useState([]);
-  // useEffect(() => {
-  //   axios.get("https://unicefbackend.koompi.app/public/api/query").then((res) => {
-  //     setItem(res.data);
-  //     setLoading(true);
-  //   });
-  // }, []);
   useEffect(() => {
     fetch(`https://unicefbackend.koompi.app/public/api/query`)
       .then((res) => res.json())
@@ -23,23 +16,9 @@ export default function Home() {
     <>
       <br />
       {/* <------ category section -------> */}
-      <div className="container mx-auto">
-        {/* <div className="flex space-x-4">
-          <div className="bg-gray-300 p-3 rounded-xl font-medium text-gray-700 cursor-pointer hover:text-blue-500 hover:bg-blue-200">
-            Pop Music
-          </div>
-          <div className="bg-gray-300 p-3 rounded-xl font-medium text-gray-700 cursor-pointer hover:text-blue-500 hover:bg-blue-200">
-            Romantic
-          </div>
-          <div className="bg-gray-300 p-3 rounded-xl font-medium text-gray-700 cursor-pointer hover:text-blue-500 hover:bg-blue-200">
-            Rock
-          </div>
-          <div className="bg-gray-300 p-3 rounded-xl font-medium text-gray-700 cursor-pointer hover:text-blue-500 hover:bg-blue-200">
-            Sad
-          </div>
-        </div> */}
+      <div>
         <br />
-        <div className="grid grid-cols-5 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4">
           {item.map((items, i) => (
             <Card
               key={i}

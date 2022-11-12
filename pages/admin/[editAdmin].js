@@ -54,7 +54,7 @@ const Editamdin = () => {
             display_name:
               display_name === "" ? item.display_name : display_name,
             username: username === "" ? item.username : username,
-            // role: role,
+            password: password === "" ? item.password : password,
             role: role === "Admin" ? "Admin" : role === "Root" ? "Root" : "",
           }),
           headers: {
@@ -81,7 +81,15 @@ const Editamdin = () => {
       {loggedIn ? (
         <>
           {" "}
-          {hideMessage ? <AlertMessage message={message} /> : ""}
+          {hideMessage ? (
+            <AlertMessage
+              message={message}
+              bg="alert alert-success"
+              text="text-green-900"
+            />
+          ) : (
+            ""
+          )}
           <h1 className="text-gray-700 text-4xl mb-12 underline">Edit Admin</h1>
           <form onSubmit={handleSubmit}>
             <div className="mb-6">
@@ -124,12 +132,24 @@ const Editamdin = () => {
                 defaultValue={item.role}
                 onChange={handleChange}
               >
-                <option value={item.role === "Admin" ? "Root" : "Admin"}>
+                {item.role === "Admin" ? (
+                  <>
+                    <option value="Admin">Admin</option>
+                    <option value="Root">Root</option>
+                  </>
+                ) : (
+                  <>
+                    <option value="Root">Root</option>
+                    <option value="Admin">Admin</option>
+                  </>
+                )}
+
+                {/* <option value={item.role === "Admin" ? "Root" : "Admin"}>
                   {item.role === "Admin" ? "Admin" : "Root"}
                 </option>
                 <option value={item.role === "Admin" ? "Admin" : "Root"}>
                   {item.role === "Admin" ? "Root" : "Admin"}
-                </option>
+                </option> */}
               </select>
               {/* <input
             name="role"

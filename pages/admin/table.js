@@ -43,7 +43,7 @@ const Table = () => {
   };
 
   return (
-    <div className="container mx-auto mt-12">
+    <div className="">
       {loggedIn && (
         <>
           <h1 className="text-gray-700 text-4xl mb-12 underline">
