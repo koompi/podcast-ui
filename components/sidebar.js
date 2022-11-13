@@ -22,7 +22,7 @@ const Sidebar = () => {
 
   return (
     <div>
-      <div className="w-64 hidden md:block mt-10" aria-label="Sidebar">
+      <div className="w-64 hidden md:block mt-10 z-10" aria-label="Sidebar">
         <div className="fixed w-64 overflow-y-auto py-4 px-3 h-screen  bg-base-200 ">
           {item.map((res, index) => {
             return (
@@ -84,7 +84,7 @@ const Sidebar = () => {
                     <ul
                       id="dropdown-example"
                       // className="space-y-2"
-                      className={state.isOpen ? " hidden" : " block"}
+                      className={state.isOpen === false ? " hidden" : " block"}
                     >
                       <li>
                         <Link

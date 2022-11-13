@@ -29,32 +29,57 @@ const Index = () => {
   }, [grade]);
 
   return (
-    <div className="container mx-auto">
+    // <div className="container mx-auto">
+    //   <br />
+    //   {loading ? (
+    //     "laoding..."
+    //   ) : (
+    //     <div className="grid grid-cols-5 gap-4">
+    //       {item.map((items, i) => (
+    //         <Card
+    //           key={i}
+    //           title={items.display_name}
+    //           thumbnail={items.thumbnail}
+    //           grade={items.grade}
+    //           subject={items.subject}
+    //           fileType={items.file_type}
+    //           location={items.location}
+    //           subjectKh={items.subject_kh}
+    //           thumbnailName={items.thumbnail.thumbnail_name}
+    //           gradeKh={items.grade_kh}
+    //           id={items.file_id}
+    //         />
+    //       ))}
+    //     </div>
+    //   )}
+
+    //   <br />
+    // </div>
+    <>
       <br />
-      {loading ? (
-        "laoding..."
-      ) : (
-        <div className="grid grid-cols-5 gap-4">
+      {/* <------ category section -------> */}
+      <div className="p-2 md:p-12">
+        <br />
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-5 md:gap-4 gap-2">
           {item.map((items, i) => (
             <Card
               key={i}
+              gradeName={items.category_display_name}
               title={items.display_name}
               thumbnail={items.thumbnail}
               grade={items.grade}
               subject={items.subject}
               fileType={items.file_type}
               location={items.location}
+              gradeKh={items.grade_kh}
               subjectKh={items.subject_kh}
               thumbnailName={items.thumbnail.thumbnail_name}
-              gradeKh={items.grade_kh}
               id={items.file_id}
             />
           ))}
         </div>
-      )}
-
-      <br />
-    </div>
+      </div>
+    </>
   );
 };
 

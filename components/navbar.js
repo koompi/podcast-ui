@@ -5,6 +5,8 @@ import AuthContext from "./context/authContext";
 import Logout from "./logout";
 import jwt from "jsonwebtoken";
 import { useTheme } from "next-themes";
+import Sidebar from "./sidebar";
+import MobileSidebar from "./mobileSidebar";
 
 const Navbar = () => {
   const [token, setToken] = useState({});
@@ -17,6 +19,8 @@ const Navbar = () => {
 
   const { theme, setTheme } = useTheme("");
   const [mounted, setMounted] = useState(false);
+
+  const [toggle, setToggle] = useState(false);
 
   useEffect(() => setMounted(true), []);
 
@@ -35,17 +39,35 @@ const Navbar = () => {
         // className="navbar bg-base-300 px-20 flex place-items-center place-content-center"
         className="flex justify-between bg-base-200 px-2 py-2 fixed w-full mb-14 z-10"
       >
+        <div onClick={() => setToggle(!toggle)} className="md:hidden p-2">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={1.5}
+            stroke="currentColor"
+            className="w-7 h-7 cursor-pointer"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25H12"
+            />
+          </svg>
+        </div>
         <div className="container">
           <Link
             href="/"
             className="btn btn-ghost normal-case text-lg items-center space-x-2"
           >
             {/* <img width={30} src="/images/library.png" /> */}
+
             <p className="text-xl text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-400">
               Contents Bank
             </p>
           </Link>
         </div>
+
         <div className="flex space-x-6">
           {/* <div className="form-control">
           <input
@@ -136,6 +158,11 @@ const Navbar = () => {
             )}
           </div>
         </div>
+      </div>
+      <div className={toggle === false ? "hidden" : "block"}>
+        <br />
+        <br />
+        <MobileSidebar />
       </div>
     </div>
   );

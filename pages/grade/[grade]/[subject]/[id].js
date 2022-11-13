@@ -55,11 +55,11 @@ export default function App() {
           <li>
             <Link href={`/grade/${grade}`}>{grade}</Link>
           </li>
-          <li href="/">
-            <Link href="">{subject}</Link>
+          <li>
+            <Link href={`/grade/${grade}/${subject}`}>{subject}</Link>
           </li>
-          <li href="/">
-            <Link href="">{item.file_type}</Link>
+          <li>
+            <Link href="#">{item.file_type}</Link>
           </li>
         </ul>
       </div>
