@@ -6,10 +6,11 @@ const MainLayout = ({ children }) => {
   return (
     <div>
       <Navbar />
+      <br />
       <div className="flex">
         <Sidebar />
-        {/* <div className="flex-1 h-screen p-7">{children}</div> */}
-        <div className="container mx-auto px-8">{children}</div>
+        <div className="flex-1 h-screen">{children}</div>
+        {/* <div>{children}</div> */}
       </div>
     </div>
   );

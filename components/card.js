@@ -17,7 +17,7 @@ const Card = ({
     <div className="show-icon bg-base-200 p-3 rounded-lg">
       <Link href={`/grade/${grade}/${subject}/${id}`}>
         <div
-          className="w-full aspect-square bg-slate-500 rounded-xl bg-cover bg-center flex place-content-center place-items-center"
+          className="w-full aspect-square bg-slate-500 rounded-sm bg-cover bg-center flex place-content-center place-items-center"
           style={{
             // backgroundImage: `url("http://placeimg.com/640/480/abstract")`,
             backgroundImage: `url("https://unicefbackend.koompi.app/${location}/${thumbnailName}")`,

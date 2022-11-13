@@ -49,8 +49,8 @@ export default function App() {
   }
   console.log(item);
   return (
-    <div>
-      <div className="text-sm breadcrumbs p-9">
+    <div className="p-2 md:p-12">
+      <div className="text-sm breadcrumbs p-9 mt-7">
         <ul>
           <li>
             <Link href={`/grade/${grade}`}>{grade}</Link>
@@ -94,11 +94,11 @@ export default function App() {
               </Player>
             </div>
           ) : item.file_type === "Audio" ? (
-            <div className="container mx-auto w-96">
+            <div className="lg:container lg:mx-auto justify-center flex">
               {/* place-content-center place-items-center absolute top-56 right-[600px] */}
               <AudioPlayer
-                className="rounded-xl bg-base-300 w-[500px]"
-                // style={{ width: "500px", backgroundColor: "" }}
+                // className="rounded-xl bg-base-300 w-[500px]"
+                style={{ width: "500px" }}
                 //   src={musicTracks[trackIndex].src}
                 src={`https://unicefbackend.koompi.app/${item.location}/${item.filename}`}
                 showSkipControls={true}
@@ -123,7 +123,7 @@ export default function App() {
             </div>
           ) : (
             <>
-              <div className="flex justify-center">
+              <div className="flex justify-center mt-6">
                 <PDFViewer
                   fileUrl={`https://unicefbackend.koompi.app/${item.location}/${item.filename}`}
                 />

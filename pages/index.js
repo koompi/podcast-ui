@@ -16,9 +16,9 @@ export default function Home() {
     <>
       <br />
       {/* <------ category section -------> */}
-      <div>
+      <div className="p-2 md:p-12">
         <br />
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-5 md:gap-4 gap-2">
           {item.map((items, i) => (
             <Card
               key={i}

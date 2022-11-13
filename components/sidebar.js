@@ -22,8 +22,8 @@ const Sidebar = () => {
 
   return (
     <div>
-      <div className="w-64 hidden md:block" aria-label="Sidebar">
-        <div className="overflow-y-auto py-4 px-3 h-screen bg-base-200 ">
+      <div className="w-64 hidden md:block mt-10" aria-label="Sidebar">
+        <div className="fixed w-64 overflow-y-auto py-4 px-3 h-screen  bg-base-200 ">
           {item.map((res, index) => {
             return (
               <div key={index}>

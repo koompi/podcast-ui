@@ -41,7 +41,7 @@ export default function PDFViewer({ fileUrl }) {
         <label htmlFor="file">Load from file:</label>{" "}
         <input onChange={onFileChange} type="file" />
       </div> */}
-      {/* <div>
+      <div>
         <Document file={fileUrl} onLoadSuccess={onDocumentLoadSuccess}>
           {Array.from({ length: numPages }, (_, index) => (
             <Page
@@ -52,8 +52,8 @@ export default function PDFViewer({ fileUrl }) {
             />
           ))}
         </Document>
-      </div> */}
-      <div>
+      </div>
+      {/* <div>
         <Document file={fileUrl} onLoadSuccess={onDocumentLoadSuccess}>
           <Page pageNumber={pageNumber} />
         </Document>
@@ -89,7 +89,7 @@ export default function PDFViewer({ fileUrl }) {
             )}
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }
