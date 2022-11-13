@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import Card from "../components/card";
+import Footer from "../components/footer";
 
 export default function Home() {
   const [loading, setLoading] = useState(false);

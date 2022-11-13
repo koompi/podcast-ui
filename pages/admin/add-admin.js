@@ -4,6 +4,7 @@ import AlertMessage from "../../components/alertMessage";
 import Notfound from "../404";
 import Navbar from "../../components/navbar";
 import AdminSidebar from "../../components/adminSidebar";
+import Footer from "../../components/footer";
 
 const Addamdin = () => {
   const { loggedIn } = useContext(AuthContext);
@@ -153,6 +154,7 @@ const Addamdin = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

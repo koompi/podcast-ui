@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import Notfound from "../404";
 import Navbar from "../../components/navbar";
 import AdminSidebar from "../../components/adminSidebar";
+import Footer from "../../components/footer";
 
 const Table = () => {
   const router = useRouter();
@@ -52,7 +53,7 @@ const Table = () => {
         <div className="flex-1 h-screen p-7 container mx-auto mt-12">
           {loggedIn && (
             <>
-              <h1 className=" text-4xl mb-12 underline">All Contents</h1>
+              <h1 className="mt-12 text-4xl mb-12 underline">All Contents</h1>
               {hideMessage ? (
                 <AlertMessage
                   message={message}
@@ -115,6 +116,7 @@ const Table = () => {
           )}
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

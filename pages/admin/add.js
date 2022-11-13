@@ -4,7 +4,7 @@ import Notfound from "../404";
 import AlertMessage from "../../components/alertMessage";
 import Navbar from "../../components/navbar";
 import AdminSidebar from "../../components/adminSidebar";
-
+import Footer from "../../components/footer";
 const Add = () => {
   const { loggedIn } = useContext(AuthContext);
   const [item, setItem] = useState([]);
@@ -304,6 +304,7 @@ const Add = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

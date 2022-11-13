@@ -37,7 +37,7 @@ const Navbar = () => {
     <div>
       <div
         // className="navbar bg-base-300 px-20 flex place-items-center place-content-center"
-        className="flex justify-between bg-base-200 px-2 py-2 fixed w-full mb-14 z-10"
+        className="flex justify-between bg-base-200 backdrop-blur bg-opacity-50 px-2 py-2 fixed w-full mb-14 z-10"
       >
         <div onClick={() => setToggle(!toggle)} className="md:hidden p-2">
           <svg

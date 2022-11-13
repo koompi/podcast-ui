@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import Notfound from "../404";
 import Navbar from "../../components/navbar";
 import AdminSidebar from "../../components/adminSidebar";
+import Footer from "../../components/footer";
 
 const Editamdin = () => {
   const router = useRouter();
@@ -174,6 +175,7 @@ const Editamdin = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

@@ -3,6 +3,7 @@ import React, { useContext, useState, useEffect } from "react";
 import AdminSidebar from "../../components/adminSidebar";
 import AlertMessage from "../../components/alertMessage";
 import AuthContext from "../../components/context/authContext";
+import Footer from "../../components/footer";
 import Navbar from "../../components/navbar";
 import Notfound from "../404";
 
@@ -59,7 +60,7 @@ const Admin = () => {
           <div className="container mx-auto">
             {loggedIn && (
               <>
-                <h1 className=" text-4xl mb-12 underline">All Admins</h1>
+                <h1 className=" text-4xl mt-12 mb-12 underline">All Admins</h1>
                 {hideMessage ? (
                   <AlertMessage
                     message={message}
@@ -123,6 +124,7 @@ const Admin = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };
