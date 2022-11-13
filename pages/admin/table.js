@@ -3,6 +3,8 @@ import AlertMessage from "../../components/alertMessage";
 import AuthContext from "../../components/context/authContext";
 import { useRouter } from "next/router";
 import Notfound from "../404";
+import Navbar from "../../components/navbar";
+import AdminSidebar from "../../components/adminSidebar";
 
 const Table = () => {
   const router = useRouter();
@@ -44,71 +46,75 @@ const Table = () => {
 
   return (
     <div className="">
-      {loggedIn && (
-        <>
-          <h1 className="text-gray-700 text-4xl mb-12 underline">
-            All Contents
-          </h1>
-          {hideMessage ? (
-            <AlertMessage
-              message={message}
-              bg="alert alert-success"
-              text="text-green-900"
-            />
-          ) : (
-            ""
-          )}
-        </>
-      )}
-
-      {loading ? (
-        "loading..."
-      ) : (
-        <>
+      <Navbar />
+      <div className="flex">
+        <AdminSidebar />
+        <div className="flex-1 h-screen p-7 container mx-auto mt-12">
           {loggedIn && (
-            <div className="overflow-x-auto">
-              <table className="table table-zebra w-full">
-                <thead>
-                  <tr>
-                    <th>No</th>
-                    <th>Grade</th>
-                    <th>Title</th>
-                    <th>Subject</th>
-                    <th>Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {item.map((res, index) => {
-                    return (
-                      <>
-                        <tr>
-                          <th>{index + 1}</th>
-                          <td>{res.grade_kh}</td>
-                          <td>{res.display_name}</td>
-                          <td>{res.subject_kh}</td>
-                          <td>
-                            <button
-                              className="bg-red-600 px-3 text-pink-100 rounded-md text-sm"
-                              onClick={() => DeleteHandler(res.file_id)}
-                            >
-                              Delete
-                            </button>
-                          </td>
-                        </tr>
-                      </>
-                    );
-                  })}
-                </tbody>
-              </table>
-            </div>
+            <>
+              <h1 className=" text-4xl mb-12 underline">All Contents</h1>
+              {hideMessage ? (
+                <AlertMessage
+                  message={message}
+                  bg="alert alert-success"
+                  text="text-green-900"
+                />
+              ) : (
+                ""
+              )}
+            </>
           )}
-          {!loggedIn && (
-            <div>
-              <Notfound />
-            </div>
+
+          {loading ? (
+            "loading..."
+          ) : (
+            <>
+              {loggedIn && (
+                <div className="overflow-x-auto">
+                  <table className="table table-zebra w-full ">
+                    <thead>
+                      <tr>
+                        <th>No</th>
+                        <th>Grade</th>
+                        <th>Title</th>
+                        <th>Subject</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {item.map((res, index) => {
+                        return (
+                          <>
+                            <tr>
+                              <th>{index + 1}</th>
+                              <td>{res.grade_kh}</td>
+                              <td>{res.display_name}</td>
+                              <td>{res.subject_kh}</td>
+                              <td>
+                                <button
+                                  className="bg-red-600 px-3 text-pink-100 rounded-md text-sm"
+                                  onClick={() => DeleteHandler(res.file_id)}
+                                >
+                                  Delete
+                                </button>
+                              </td>
+                            </tr>
+                          </>
+                        );
+                      })}
+                    </tbody>
+                  </table>
+                </div>
+              )}
+              {!loggedIn && (
+                <div>
+                  <Notfound />
+                </div>
+              )}
+            </>
           )}
-        </>
-      )}
+        </div>
+      </div>
     </div>
   );
 };

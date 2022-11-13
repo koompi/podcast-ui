@@ -2,6 +2,8 @@ import React, { useState, useContext } from "react";
 import AuthContext from "../../components/context/authContext";
 import AlertMessage from "../../components/alertMessage";
 import Notfound from "../404";
+import Navbar from "../../components/navbar";
+import AdminSidebar from "../../components/adminSidebar";
 
 const Addamdin = () => {
   const { loggedIn } = useContext(AuthContext);
@@ -35,106 +37,122 @@ const Addamdin = () => {
         },
       }).then((res) => {
         setMessage("Add Successfully");
+        setLoading(true);
         setText("text-green-900");
         setBg("alert alert-success");
-        setLoading(true);
         setHideMessage(true);
         setTimeout(() => {
           setHideMessage(false);
+          setLoading(false);
+          setValue({
+            display_name: "",
+            username: "",
+            password: "",
+            role: "Admin",
+          });
         }, 3000);
-        setValue({
-          display_name: "",
-          username: "",
-          password: "",
-          role: "Admin",
-        });
-        setLoading(false);
       });
     } catch (error) {
       throw error;
     }
   };
   return (
-    <div className="container mx-auto mt-12">
-      {loggedIn ? (
-        <>
-          {hideMessage ? (
-            <AlertMessage message={message} bg={bg} text={text} />
-          ) : (
-            ""
-          )}
+    <div>
+      <Navbar />
+      <div className="flex">
+        <AdminSidebar />
+        <div className="flex-1 h-screen p-7 container mx-auto mt-12">
+          <div className="container mx-auto mt-12 w-1/2">
+            {loggedIn ? (
+              <>
+                {hideMessage ? (
+                  <AlertMessage message={message} bg={bg} text={text} />
+                ) : (
+                  ""
+                )}
 
-          <h1 className="text-gray-700 text-4xl mb-12 underline">Add Admins</h1>
-          <form onSubmit={handleSubmit}>
-            <div className="mb-6">
-              <label className="text-bold block">Display Name</label>
-              <input
-                name="display_name"
-                value={display_name}
-                onChange={handleChange}
-                className="border-gray-200 border p-2 w-96 rounded-lg"
-                placeholder="Input Display name"
-              />
-            </div>
-            <div className="mb-6">
-              <label className="text-bold block">Username</label>
-              <input
-                name="username"
-                value={username}
-                onChange={handleChange}
-                className="border-gray-200 border p-2 w-96 rounded-lg"
-                placeholder="Input username"
-              />
-            </div>
-            <div className="mb-6">
-              <label className="text-bold block">Password</label>
-              <input
-                name="password"
-                value={password}
-                onChange={handleChange}
-                className="border-gray-200 border p-2 w-96 rounded-lg"
-                placeholder="Input Password"
-              />
-            </div>
-            <div className="mb-6">
-              <label className="text-bold block">Role</label>
+                <h1 className=" text-4xl mb-12 underline">Add Admins</h1>
+                <form onSubmit={handleSubmit}>
+                  <div className="mb-6 grid grid-cols-5 items-center">
+                    <label className="text-bold block">Display Name</label>
+                    <input
+                      name="display_name"
+                      value={display_name}
+                      onChange={handleChange}
+                      className="border-gray-200 border p-2 w-96 rounded-lg"
+                      placeholder="Input Display name"
+                    />
+                  </div>
+                  <div className="mb-6 grid grid-cols-5 items-center">
+                    <label className="text-bold block">Username</label>
+                    <input
+                      name="username"
+                      value={username}
+                      onChange={handleChange}
+                      className="border-gray-200 border p-2 w-96 rounded-lg"
+                      placeholder="Input username"
+                    />
+                  </div>
+                  <div className="mb-6 grid grid-cols-5 items-center">
+                    <label className="text-bold block">Password</label>
+                    <input
+                      name="password"
+                      value={password}
+                      onChange={handleChange}
+                      className="border-gray-200 border p-2 w-96 rounded-lg"
+                      placeholder="Input Password"
+                    />
+                  </div>
+                  <div className="mb-6 grid grid-cols-5 items-center">
+                    <label className="text-bold block">Role</label>
 
-              <select
-                className="border-gray-200 border p-2 w-96 rounded-lg"
-                name="role"
-                value={role}
-                onChange={handleChange}
-              >
-                <option value="Admin">Admin</option>
-                <option value="Root">Root</option>
-              </select>
-              {/* <input
-            name="role"
-            value={role}
-            onChange={handleChange}
-            className="border-gray-200 border p-2 w-96 rounded-lg"
-            placeholder="Input Role"
-          /> */}
-            </div>
-            {username === "" ||
-            password === "" ||
-            display_name === "" ||
-            role === "" ? (
-              <button disabled className="btn btn-success w-96">
-                Submit
-              </button>
+                    <select
+                      className="border-gray-200 border p-2 w-96 rounded-lg"
+                      name="role"
+                      value={role}
+                      onChange={handleChange}
+                    >
+                      <option value="Admin">Admin</option>
+                      <option value="Root">Root</option>
+                    </select>
+                  </div>
+                  <div className="grid grid-cols-5 gap-2">
+                    {username === "" ||
+                    password === "" ||
+                    display_name === "" ||
+                    role === "" ? (
+                      <>
+                        <div className="col-span-2">
+                          <button disabled className="btn btn-success w-full">
+                            Submit
+                          </button>
+                        </div>
+                      </>
+                    ) : (
+                      <>
+                        <div className="col-span-2">
+                          <button
+                            type="submit"
+                            className={`btn w-full ${
+                              loading ? "loading" : "btn-success"
+                            }`}
+                          >
+                            {loading ? "loading..." : "Submit"}
+                          </button>
+                        </div>
+                      </>
+                    )}
+                  </div>
+                </form>
+              </>
             ) : (
-              <button type="submit" className="btn btn-success w-96">
-                {loading ? "loading..." : "Submit"}
-              </button>
+              <>
+                <Notfound />
+              </>
             )}
-          </form>
-        </>
-      ) : (
-        <>
-          <Notfound />
-        </>
-      )}
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

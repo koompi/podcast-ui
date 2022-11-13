@@ -59,14 +59,10 @@ const Login = () => {
         ""
       )}
       <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-        <div className="bg-base-300 p-6 rounded-lg ">
-          <h1 className="text-center font-bold text-gray-900 text-2xl uppercase">
-            Login
-          </h1>
+        <div className="bg-base-200 p-6 rounded-lg ">
+          <h1 className="text-center font-bold  text-2xl uppercase">Login</h1>
           <form onSubmit={submitHandle} className="space-y-3">
-            <label className="block text-sm font-medium text-gray-900 dark:text-gray-400">
-              Username
-            </label>
+            <label className="block text-sm font-medium ">Username</label>
 
             <input
               name="username"
@@ -75,7 +71,7 @@ const Login = () => {
               className="p-2 border-2 rounded-lg w-96"
               placeholder="Email"
             />
-            <label className="block text-sm font-medium text-gray-900 dark:text-gray-400">
+            <label className="block text-sm font-medium ">
               Password
               {/* {value.password} */}
             </label>

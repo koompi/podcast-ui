@@ -81,3 +81,26 @@ body {
   border: 10px solid rgba(0, 0, 0, 0.1);
   filter: drop-shadow(0 0 2px grey);
 }
+.rhap_container {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+  font-family: inherit;
+  width: 500px !important;
+  padding: 10px 15px;
+  background-color: transparent !important;
+  box-shadow: 0 0 3px 0 rgb(0 0 0 / 20%);
+}
+/* .tuby {
+  width: 65% !important;
+  height: 65% !important;
+} */
+
+/* .tuby {
+  width: 82% !important;
+  height: 0px;
+  padding-bottom: 46.25%;
+  display: flex !important;
+  justify-content: center !important;
+} */

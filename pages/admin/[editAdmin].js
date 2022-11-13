@@ -3,6 +3,8 @@ import AuthContext from "../../components/context/authContext";
 import AlertMessage from "../../components/alertMessage";
 import { useRouter } from "next/router";
 import Notfound from "../404";
+import Navbar from "../../components/navbar";
+import AdminSidebar from "../../components/adminSidebar";
 
 const Editamdin = () => {
   const router = useRouter();
@@ -77,107 +79,101 @@ const Editamdin = () => {
     }
   };
   return (
-    <div className="container mx-auto mt-12">
-      {loggedIn ? (
-        <>
-          {" "}
-          {hideMessage ? (
-            <AlertMessage
-              message={message}
-              bg="alert alert-success"
-              text="text-green-900"
-            />
-          ) : (
-            ""
-          )}
-          <h1 className="text-gray-700 text-4xl mb-12 underline">Edit Admin</h1>
-          <form onSubmit={handleSubmit}>
-            <div className="mb-6">
-              <label className="text-bold block">Display Name</label>
-
-              <input
-                name="display_name"
-                defaultValue={item.display_name}
-                onChange={handleChange}
-                className="border-gray-200 border p-2 w-96 rounded-lg"
-                placeholder="Input Display name"
-              />
-            </div>
-            <div className="mb-6">
-              <label className="text-bold block">Username</label>
-              <input
-                name="username"
-                defaultValue={item.username}
-                onChange={handleChange}
-                className="border-gray-200 border p-2 w-96 rounded-lg"
-                placeholder="Input username"
-              />
-            </div>
-            <div className="mb-6">
-              <label className="text-bold block">Password</label>
-              <input
-                name="password"
-                defaultValue={item.password}
-                onChange={handleChange}
-                className="border-gray-200 border p-2 w-96 rounded-lg"
-                placeholder="Unchnaged"
-              />
-            </div>
-            <div className="mb-6">
-              <label className="text-bold block">Role</label>
-
-              <select
-                className="border-gray-200 border p-2 w-96 rounded-lg"
-                name="role"
-                defaultValue={item.role}
-                onChange={handleChange}
-              >
-                {item.role === "Admin" ? (
-                  <>
-                    <option value="Admin">Admin</option>
-                    <option value="Root">Root</option>
-                  </>
+    <div>
+      <Navbar />
+      <div className="flex">
+        <AdminSidebar />
+        <div className="flex-1 h-screen p-7 container mx-auto mt-12">
+          <div className="container mx-auto mt-12 w-1/2">
+            {loggedIn ? (
+              <>
+                {" "}
+                {hideMessage ? (
+                  <AlertMessage
+                    message={message}
+                    bg="alert alert-success"
+                    text="text-green-900"
+                  />
                 ) : (
-                  <>
-                    <option value="Root">Root</option>
-                    <option value="Admin">Admin</option>
-                  </>
+                  ""
                 )}
+                <h1 className=" text-4xl mb-12 underline">Edit Admin</h1>
+                <form onSubmit={handleSubmit}>
+                  <div className="mb-6 items-center grid grid-cols-5">
+                    <label className="text-bold block">Display Name</label>
 
-                {/* <option value={item.role === "Admin" ? "Root" : "Admin"}>
-                  {item.role === "Admin" ? "Admin" : "Root"}
-                </option>
-                <option value={item.role === "Admin" ? "Admin" : "Root"}>
-                  {item.role === "Admin" ? "Root" : "Admin"}
-                </option> */}
-              </select>
-              {/* <input
-            name="role"
-            value={role}
-            onChange={handleChange}
-            className="border-gray-200 border p-2 w-96 rounded-lg"
-            placeholder="Input Role"
-          /> */}
-            </div>
-            {/* {username === "" ||
-        password === "" ||
-        display_name === "" ||
-        role === "" ? (
-          <button disabled className="btn btn-success w-96">
-            Update
-          </button>
-        ) : ( */}
-            <button type="submit" className="btn btn-success w-96">
-              {loading ? "loading..." : "Update"}
-            </button>
-            {/* )} */}
-          </form>
-        </>
-      ) : (
-        <>
-          <Notfound />
-        </>
-      )}
+                    <input
+                      name="display_name"
+                      defaultValue={item.display_name}
+                      onChange={handleChange}
+                      className="border-gray-200 border p-2 w-96 rounded-lg"
+                      placeholder="Input Display name"
+                    />
+                  </div>
+                  <div className="mb-6 items-center grid grid-cols-5">
+                    <label className="text-bold block">Username</label>
+                    <input
+                      name="username"
+                      defaultValue={item.username}
+                      onChange={handleChange}
+                      className="border-gray-200 border p-2 w-96 rounded-lg"
+                      placeholder="Input username"
+                    />
+                  </div>
+                  <div className="mb-6 items-center grid grid-cols-5">
+                    <label className="text-bold block">Password</label>
+                    <input
+                      name="password"
+                      defaultValue={item.password}
+                      onChange={handleChange}
+                      className="border-gray-200 border p-2 w-96 rounded-lg"
+                      placeholder="Unchnaged"
+                    />
+                  </div>
+                  <div className="mb-6 items-center grid grid-cols-5">
+                    <label className="text-bold block">Role</label>
+
+                    <select
+                      className="border-gray-200 border p-2 w-96 rounded-lg"
+                      name="role"
+                      defaultValue={item.role}
+                      onChange={handleChange}
+                    >
+                      {item.role === "Admin" ? (
+                        <>
+                          <option value="Admin">Admin</option>
+                          <option value="Root">Root</option>
+                        </>
+                      ) : (
+                        <>
+                          <option value="Root">Root</option>
+                          <option value="Admin">Admin</option>
+                        </>
+                      )}
+                    </select>
+                  </div>
+                  <div className="grid grid-cols-5 gap-2">
+                    <div className="col-span-2">
+                      <button
+                        type="submit"
+                        className={`btn w-full ${
+                          loading ? "loading" : "btn-success"
+                        }`}
+                      >
+                        {loading ? "loading..." : "Submit"}
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </>
+            ) : (
+              <>
+                <Notfound />
+              </>
+            )}
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

@@ -11,9 +11,9 @@ function MyApp({ Component, pageProps }) {
         Component.getLayout(
           <ThemeProvider>
             <AuthContextProvider>
-              <AdminLayout>
-                <Component {...pageProps} />
-              </AdminLayout>
+              {/* <AdminLayout> */}
+              <Component {...pageProps} />
+              {/* </AdminLayout> */}
             </AuthContextProvider>
           </ThemeProvider>
         )

@@ -1,7 +1,9 @@
 import Link from "next/link";
 import React, { useContext, useState, useEffect } from "react";
+import AdminSidebar from "../../components/adminSidebar";
 import AlertMessage from "../../components/alertMessage";
 import AuthContext from "../../components/context/authContext";
+import Navbar from "../../components/navbar";
 import Notfound from "../404";
 
 const Admin = () => {
@@ -49,70 +51,78 @@ const Admin = () => {
   };
 
   return (
-    <div className="container mx-auto mt-12">
-      {loggedIn && (
-        <>
-          <h1 className="text-gray-700 text-4xl mb-12 underline">All Admins</h1>
-          {hideMessage ? (
-            <AlertMessage
-              message={message}
-              bg="alert alert-success"
-              text="text-green-900"
-            />
-          ) : (
-            ""
-          )}
-        </>
-      )}
-      {loading ? (
-        <Notfound />
-      ) : (
-        <>
-          {loggedIn && (
-            <div className="overflow-x-auto">
-              <table className="table table-zebra w-full">
-                <thead>
-                  <tr>
-                    <th>No</th>
-                    <th>Name</th>
-                    <th>Username</th>
-                    <th>Role</th>
-                    <th>Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {item.map((res, index) => {
-                    return (
-                      <>
+    <div>
+      <Navbar />
+      <div className="flex">
+        <AdminSidebar />
+        <div className="flex-1 h-screen p-7 container mx-auto mt-12">
+          <div className="container mx-auto">
+            {loggedIn && (
+              <>
+                <h1 className=" text-4xl mb-12 underline">All Admins</h1>
+                {hideMessage ? (
+                  <AlertMessage
+                    message={message}
+                    bg="alert alert-success"
+                    text="text-green-900"
+                  />
+                ) : (
+                  ""
+                )}
+              </>
+            )}
+            {loading ? (
+              <Notfound />
+            ) : (
+              <>
+                {loggedIn && (
+                  <div className="overflow-x-auto">
+                    <table className="table table-zebra w-full">
+                      <thead>
                         <tr>
-                          <th>{index + 1}</th>
-                          <td>{res.display_name}</td>
-                          <td>{res.username}</td>
-                          <td>{res.role}</td>
-                          <td className="space-x-2">
-                            <button
-                              className="bg-red-600 px-3 text-pink-100 rounded-md text-sm"
-                              onClick={() => DeleteHandler(res.user_id)}
-                            >
-                              Delete
-                            </button>
-                            <Link href={`/admin/${res.user_id}`}>
-                              <button className="bg-green-600 px-3 text-pink-100 rounded-md text-sm">
-                                Edit
-                              </button>
-                            </Link>
-                          </td>
+                          <th>No</th>
+                          <th>Name</th>
+                          <th>Username</th>
+                          <th>Role</th>
+                          <th>Action</th>
                         </tr>
-                      </>
-                    );
-                  })}
-                </tbody>
-              </table>
-            </div>
-          )}
-          {!loggedIn && <div>notig</div>}
-        </>
-      )}
+                      </thead>
+                      <tbody>
+                        {item.map((res, index) => {
+                          return (
+                            <>
+                              <tr>
+                                <th>{index + 1}</th>
+                                <td>{res.display_name}</td>
+                                <td>{res.username}</td>
+                                <td>{res.role}</td>
+                                <td className="space-x-2">
+                                  <button
+                                    className="bg-red-600 px-3 text-pink-100 rounded-md text-sm"
+                                    onClick={() => DeleteHandler(res.user_id)}
+                                  >
+                                    Delete
+                                  </button>
+                                  <Link href={`/admin/${res.user_id}`}>
+                                    <button className="bg-green-600 px-3 text-pink-100 rounded-md text-sm">
+                                      Edit
+                                    </button>
+                                  </Link>
+                                </td>
+                              </tr>
+                            </>
+                          );
+                        })}
+                      </tbody>
+                    </table>
+                  </div>
+                )}
+                {!loggedIn && <div>notig</div>}
+              </>
+            )}
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

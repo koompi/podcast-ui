@@ -57,7 +57,7 @@ const Sidebar = () => {
                       <span className="flex-1 ml-3 text-left whitespace-nowrap">
                         <p
                           className={
-                            theme === "light" ? "text-black" : "text-white"
+                            theme === "default" ? "text-black" : "text-white"
                           }
                         >
                           {res.category_display_name}
@@ -66,7 +66,7 @@ const Sidebar = () => {
                       <svg
                         // className="w-6 h-6"
                         className={
-                          theme === "light"
+                          theme === "default"
                             ? "text-black w-6 h-6"
                             : "text-white w-6 h-6"
                         }
@@ -97,7 +97,7 @@ const Sidebar = () => {
                         >
                           <p
                             className={
-                              theme === "light" ? "text-black" : "text-white"
+                              theme === "default" ? "text-black" : "text-white"
                             }
                           >
                             ទាំងអស់
@@ -116,7 +116,7 @@ const Sidebar = () => {
                               >
                                 <p
                                   className={
-                                    theme === "light"
+                                    theme === "default"
                                       ? "text-black"
                                       : "text-white"
                                   }

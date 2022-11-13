@@ -8,17 +8,13 @@ const AdminSidebar = () => {
     <div>
       <div className="w-64" aria-label="Sidebar">
         <div className="overflow-y-auto py-4 px-3 h-screen bg-base-200 ">
-          <h2
-            className={`${
-              theme === "light" ? "text-gray-600" : "text-gray-400"
-            } font-bold text-lg  mb-2 mt-4 text-center`}
-          >
+          <h2 className={`font-bold text-lg  mb-2 mt-4 text-center`}>
             Content
           </h2>
           <hr />
           <br />
           <Link
-            className="space-x-4 items-center flex p-3 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-base-100 dark:text-white dark:hover:bg-gray-700"
+            className="space-x-4 items-center flex p-3 w-full text-base font-normal rounded-lg transition duration-75 group hover:bg-base-100 dark:text-white dark:hover:bg-gray-700"
             href="/admin/table"
           >
             {/* <svg
@@ -36,13 +32,11 @@ const AdminSidebar = () => {
               ></path>
             </svg> */}
             <img width={35} src="/images/web-content.png" />
-            <p className={theme === "light" ? "text-black" : "text-gray-400"}>
-              All Contents
-            </p>
+            <p>All Contents</p>
           </Link>
 
           <Link
-            className="space-x-4 items-center flex p-3 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-base-100 dark:text-white dark:hover:bg-gray-700"
+            className="space-x-4 items-center flex p-3 w-full text-base font-normal  rounded-lg transition duration-75 group hover:bg-base-100 dark:text-white dark:hover:bg-gray-700"
             href="/admin/add"
           >
             {/* <svg
@@ -60,9 +54,7 @@ const AdminSidebar = () => {
               ></path>
             </svg> */}
             <img width={35} src="/images/copywriting.png" />
-            <p className={theme === "light" ? "text-black" : "text-gray-400"}>
-              Add Contents
-            </p>
+            <p>Add Contents</p>
           </Link>
           <div className="flex space-x-1 justify-center items-center">
             {/* <svg
@@ -79,18 +71,12 @@ const AdminSidebar = () => {
                 d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
               ></path>
             </svg> */}
-            <h2
-              className={`${
-                theme === "light" ? "text-gray-600" : "text-gray-400"
-              } font-bold text-lg  mb-2 mt-4`}
-            >
-              Admin
-            </h2>
+            <h2 className={`font-bold text-lg  mb-2 mt-4`}>Admin</h2>
           </div>
           <hr />
           <br />
           <Link
-            className="space-x-4 items-center flex p-3 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-base-100 dark:text-white dark:hover:bg-gray-700"
+            className="space-x-4 items-center flex p-3 w-full text-base font-normal  rounded-lg transition duration-75 group hover:bg-base-100 dark:text-white dark:hover:bg-gray-700"
             href="/admin/admins"
           >
             {/* <svg
@@ -108,13 +94,11 @@ const AdminSidebar = () => {
               ></path>
             </svg> */}
             <img width={32} src="/images/teamwork.png" />
-            <div className={theme === "light" ? "text-black" : "text-gray-400"}>
-              All Admins
-            </div>
+            <p>All Admins</p>
           </Link>
 
           <Link
-            className="space-x-4 items-center flex p-3 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-base-100 dark:text-white dark:hover:bg-gray-700"
+            className="space-x-4 items-center flex p-3 w-full text-base font-normal  rounded-lg transition duration-75 group hover:bg-base-100 dark:text-white dark:hover:bg-gray-700"
             href="/admin/add-admin"
           >
             {/* <svg
@@ -132,9 +116,7 @@ const AdminSidebar = () => {
               ></path>
             </svg> */}
             <img width={32} src="/images/add-user.png" />
-            <div className={theme === "light" ? "text-black" : "text-gray-400"}>
-              Add Admins
-            </div>
+            <p>Add Admins</p>
           </Link>
         </div>
       </div>

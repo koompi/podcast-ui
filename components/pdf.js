@@ -12,16 +12,28 @@ pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/$
 // pdfjs.GlobalWorkerOptions.workerSrc = workerSrc;
 
 export default function PDFViewer({ fileUrl }) {
-  //   const [file, setFile] = useState("./pdf.pdf");
   const [numPages, setNumPages] = useState(null);
+  const [pageNumber, setPageNumber] = useState(1);
+
+  function onDocumentLoadSuccess({ numPages }) {
+    setNumPages(numPages);
+  }
+  function nexPage() {
+    setPageNumber(pageNumber + 1);
+  }
+  function backPage() {
+    setPageNumber(pageNumber - 1);
+  }
+  //   const [file, setFile] = useState("./pdf.pdf");
+  // const [numPages, setNumPages] = useState(null);
 
   //   function onFileChange(event) {
   //     setFile(event.target.files[0]);
   //   }
 
-  function onDocumentLoadSuccess({ numPages: nextNumPages }) {
-    setNumPages(nextNumPages);
-  }
+  // function onDocumentLoadSuccess({ numPages: nextNumPages }) {
+  //   setNumPages(nextNumPages);
+  // }
 
   return (
     <div>
@@ -29,7 +41,7 @@ export default function PDFViewer({ fileUrl }) {
         <label htmlFor="file">Load from file:</label>{" "}
         <input onChange={onFileChange} type="file" />
       </div> */}
-      <div>
+      {/* <div>
         <Document file={fileUrl} onLoadSuccess={onDocumentLoadSuccess}>
           {Array.from({ length: numPages }, (_, index) => (
             <Page
@@ -40,6 +52,43 @@ export default function PDFViewer({ fileUrl }) {
             />
           ))}
         </Document>
+      </div> */}
+      <div>
+        <Document file={fileUrl} onLoadSuccess={onDocumentLoadSuccess}>
+          <Page pageNumber={pageNumber} />
+        </Document>
+        <br />
+        <div className="flex justify-between items-center">
+          <p>
+            Page {pageNumber} of {numPages}
+          </p>
+          <div className="space-x-2">
+            {pageNumber === 1 ? (
+              <button className="bg-base-300 px-5 py-1 rounded-full" disabled>
+                back
+              </button>
+            ) : (
+              <button
+                className="bg-base-300 px-5 py-1 rounded-full"
+                onClick={backPage}
+              >
+                back
+              </button>
+            )}
+            {pageNumber === numPages ? (
+              <button className="bg-base-300 px-5 py-1 rounded-full" disabled>
+                next
+              </button>
+            ) : (
+              <button
+                className="bg-base-300 px-5 py-1 rounded-full"
+                onClick={nexPage}
+              >
+                next
+              </button>
+            )}
+          </div>
+        </div>
       </div>
     </div>
   );

@@ -70,33 +70,44 @@ export default function App() {
       ) : (
         <>
           {item.file_type === "Video" ? (
-            <Player
-              // dimensions={{ width: "100%", height: "100%" }}
-              primaryColor="#1991ff"
-              src={[
-                {
-                  quality: "1080p",
-                  url: `https://unicefbackend.koompi.app/${item.location}/${item.filename}`,
-                },
-              ]}
-              keyboardShortcut={false}
-            >
-              {(ref, props) => <video ref={ref} {...props} autoPlay />}
-            </Player>
+            <div className="lg:px-36 px-0">
+              <Player
+                // style={{ paddingBottom: "50%" }}
+                // dimensions={{ width: "50%", height: "50%" }}
+                primaryColor="#1991ff"
+                src={[
+                  {
+                    quality: "1080p",
+                    url: `https://unicefbackend.koompi.app/${item.location}/${item.filename}`,
+                  },
+                ]}
+                keyboardShortcut={{
+                  pause: true,
+                  forward: true,
+                  rewind: true,
+                  fullScreen: true,
+                  mute: true,
+                  subtitle: true,
+                }}
+              >
+                {(ref, props) => <video ref={ref} {...props} autoPlay />}
+              </Player>
+            </div>
           ) : item.file_type === "Audio" ? (
-            <div className="flex place-content-center place-items-center absolute top-56 right-[600px]">
+            <div className="container mx-auto w-96">
+              {/* place-content-center place-items-center absolute top-56 right-[600px] */}
               <AudioPlayer
-                className="rounded-xl"
-                style={{ width: "500px" }}
+                className="rounded-xl bg-base-300 w-[500px]"
+                // style={{ width: "500px", backgroundColor: "" }}
                 //   src={musicTracks[trackIndex].src}
                 src={`https://unicefbackend.koompi.app/${item.location}/${item.filename}`}
                 showSkipControls={true}
                 showJumpControls={false}
                 header={
                   <div>
-                    <div className="flex justify-center ">
+                    <div className="flex justify-center">
                       <img
-                        className=""
+                        className="rounded"
                         src={`https://unicefbackend.koompi.app/${item.thumbnail.thumbnail_location}/${item.thumbnail.thumbnail_name}`}
                       />
                     </div>

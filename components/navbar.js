@@ -54,10 +54,10 @@ const Navbar = () => {
           />
         </div> */}
         <div className="shadow-card flex items-center justify-center rounded-md ">
-          {theme === "light" ? (
+          {theme === "default" ? (
             <span
               onClick={() => setTheme("dark")}
-              className="bg-white cursor-pointer flex h-9 w-9 items-center justify-center rounded-full text-black"
+              className="bg-base-300 cursor-pointer flex h-9 w-9 items-center justify-center rounded-full text-black"
             >
               <svg
                 width={16}
@@ -83,7 +83,7 @@ const Navbar = () => {
             </span>
           ) : (
             <span
-              onClick={() => setTheme("light")}
+              onClick={() => setTheme("default")}
               className="cursor-pointer text-black flex h-9 w-9 items-center justify-center rounded-full bg-slate-300"
             >
               <svg
