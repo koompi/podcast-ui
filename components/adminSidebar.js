@@ -6,7 +6,7 @@ const AdminSidebar = () => {
   const { theme, setTheme } = useTheme("");
   return (
     <div>
-      <div className="w-64" aria-label="Sidebar">
+      <div className="w-64 mt-12" aria-label="Sidebar">
         <div className="overflow-y-auto py-4 px-3 h-screen bg-base-200 ">
           <h2 className={`font-bold text-lg  mb-2 mt-4 text-center`}>
             Content
