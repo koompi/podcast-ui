@@ -7,7 +7,7 @@ import { Player } from "react-tuby";
 import "react-tuby/css/main.css";
 import dynamic from "next/dynamic";
 import Link from "next/link";
-
+import Pdf from "../../../../components/pdfviewer";
 const PDFViewer = dynamic(() => import("../../../../components/pdf"), {
   ssr: false,
 });
@@ -47,10 +47,10 @@ export default function App() {
   function onDocumentLoadSuccess({ numPages }) {
     setNumPages(numPages);
   }
-  console.log(item);
+
   return (
     <div className="p-2 md:p-12">
-      <div className="text-sm breadcrumbs p-9 mt-7">
+      <div className="text-sm breadcrumbs p-9">
         <ul>
           <li>
             <Link href={`/grade/${grade}`}>{grade}</Link>
@@ -123,8 +123,11 @@ export default function App() {
             </div>
           ) : (
             <>
-              <div className="flex justify-center mt-6">
-                <PDFViewer
+              <div className="flex justify-center">
+                {/* <PDFViewer
+                  fileUrl={`https://unicefbackend.koompi.app/${item.location}/${item.filename}`}
+                /> */}
+                <Pdf
                   fileUrl={`https://unicefbackend.koompi.app/${item.location}/${item.filename}`}
                 />
               </div>
@@ -135,3 +138,19 @@ export default function App() {
     </div>
   );
 }
+
+// import React from "react";
+
+// const PDF = () => {
+//   return (
+//     <div>
+//       <div className="flex justify-center mt-6">
+//         <PDFViewer
+//         // fileUrl={`https://unicefbackend.koompi.app/${item.location}/${item.filename}`}
+//         />
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default PDF;
