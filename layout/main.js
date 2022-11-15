@@ -13,7 +13,7 @@ const MainLayout = ({ children }) => {
           <Sidebar />
           <div className="flex-1 h-screen">
             {children}
-            <Footer />
+            {/* <Footer /> */}
           </div>
         </div>
       </div>

@@ -51,7 +51,6 @@ const Pdf = ({ fileUrl }) => {
   return (
     <div>
       <iframe src={fileUrl} width="100%" height="500px"></iframe>
-      {/* <a id="id2239" href="http://example.com:8080/client/attachment/filename.pdf" class="act01">filename.pdf</a> */}
     </div>
   );
 };
