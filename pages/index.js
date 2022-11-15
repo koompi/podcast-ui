@@ -40,6 +40,7 @@ export default function Home() {
                   subjectKh={items.subject_kh}
                   thumbnailName={items.thumbnail.thumbnail_name}
                   id={items.file_id}
+                  filename={items.filename}
                 />
               ))}
             </div>

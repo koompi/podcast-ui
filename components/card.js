@@ -12,10 +12,21 @@ const Card = ({
   gradeKh,
   subjectKh,
   id,
+  filename,
 }) => {
   return (
     <div className="show-icon bg-base-200 p-3 rounded-lg overflow-hidden">
-      <Link href={`/grade/${grade}/${subject}/${id}`}>
+      {/* <Link href={`/grade/${grade}/${subject}/${id}`}> */}
+      <Link
+        href={
+          fileType === "PDF"
+            ? `https://unicefpdf.koompi.app/web/viewer.html?file=${encodeURIComponent(
+                `${location}/${filename}`
+              )}`
+            : `/grade/${grade}/${subject}/${id}`
+        }
+        target={fileType === "PDF" && "_blank"}
+      >
         <div
           className="w-full aspect-square bg-slate-500 rounded-sm bg-cover bg-center flex place-content-center place-items-center"
           style={{
