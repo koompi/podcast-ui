@@ -5,12 +5,12 @@ import "react-h5-audio-player/lib/styles.css";
 import { useRouter } from "next/router";
 import { Player } from "react-tuby";
 import "react-tuby/css/main.css";
-import dynamic from "next/dynamic";
+// import dynamic from "next/dynamic";
 import Link from "next/link";
 import Pdf from "../../../../components/pdfviewer";
-const PDFViewer = dynamic(() => import("../../../../components/pdf"), {
-  ssr: false,
-});
+// const PDFViewer = dynamic(() => import("../../../../components/pdf"), {
+//   ssr: false,
+// });
 
 export default function App() {
   const router = useRouter();
@@ -141,12 +141,15 @@ export default function App() {
 
 // import React from "react";
 
+// import Pdf from "../../../../components/pdfviewer";
+
 // const PDF = () => {
 //   return (
 //     <div>
 //       <div className="flex justify-center mt-6">
-//         <PDFViewer
-//         // fileUrl={`https://unicefbackend.koompi.app/${item.location}/${item.filename}`}
+//         <Pdf
+//           fileUrl="/pdf.pdf"
+//           // fileUrl={`https://unicefbackend.koompi.app/${item.location}/${item.filename}`}
 //         />
 //       </div>
 //     </div>

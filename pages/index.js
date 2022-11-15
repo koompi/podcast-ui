@@ -13,6 +13,7 @@ export default function Home() {
         setLoading(false);
       });
   }, []);
+  console.log(item, "item");
 
   return (
     <>
