@@ -14,7 +14,7 @@ const Card = ({
   id,
 }) => {
   return (
-    <div className="show-icon bg-base-200 p-3 rounded-lg">
+    <div className="show-icon bg-base-200 p-3 rounded-lg overflow-hidden">
       <Link href={`/grade/${grade}/${subject}/${id}`}>
         <div
           className="w-full aspect-square bg-slate-500 rounded-sm bg-cover bg-center flex place-content-center place-items-center"
