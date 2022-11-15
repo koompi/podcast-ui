@@ -132,10 +132,12 @@ export default function App() {
                 {/* <PDFViewer
                   fileUrl={`https://unicefbackend.koompi.app/${item.location}/${item.filename}`}
                 /> */}
-                {/* <Pdf
+                <Pdf
                   fileUrl={`https://unicefbackend.koompi.app/${item.location}/${item.filename}`}
-                /> */}
-
+                />
+                <br />
+              </div>
+              <div className=" flex justify-center mt-4">
                 <Link
                   target="_blank"
                   href={`https://unicefbackend.koompi.app/${item.location}/${item.filename}`}
