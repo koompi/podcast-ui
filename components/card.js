@@ -20,7 +20,7 @@ const Card = ({
       <Link
         href={
           fileType === "PDF"
-            ? `https://unicefpdf.koompi.app/web/viewer.html?file${encodeURIComponent(
+            ? `https://unicefpdf.koompi.app/web/viewer.html?file=${encodeURIComponent(
                 `/${location}/${filename}`
               )}`
             : `/grade/${grade}/${subject}/${id}`
