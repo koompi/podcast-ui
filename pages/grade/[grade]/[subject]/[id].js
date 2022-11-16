@@ -29,6 +29,7 @@ export default function App() {
         setLoading(false);
       });
   }, [grade, subject, id]);
+  console.log(item);
 
   const handleClickPrevious = () => {
     setTrackIndex((currentTrack) =>
@@ -132,9 +133,9 @@ export default function App() {
                 {/* <PDFViewer
                   fileUrl={`https://unicefbackend.koompi.app/${item.location}/${item.filename}`}
                 /> */}
-                <Pdf
+                {/* <Pdf
                   fileUrl={`https://unicefbackend.koompi.app/${item.location}/${item.filename}`}
-                />
+                /> */}
                 {/* <Pdf
                   fileUrl={encodeURIComponent(
                     `https://unicefpdf.koompi.app/web/viewer.html?file=${item.location}/${item.filename}`
@@ -142,7 +143,16 @@ export default function App() {
                 /> */}
                 <br />
               </div>
-              <div className=" flex justify-center mt-4">
+              <div className=" flex justify-center mt-4 space-x-8">
+                <Link
+                  className="btn btn-success"
+                  href={`https://unicefpdf.koompi.app/web/viewer.html?file=${encodeURIComponent(
+                    `/${item.location}/${item.filename}`
+                  )}`}
+                  target="_blank"
+                >
+                  View
+                </Link>
                 <Link
                   target="_blank"
                   href={`https://unicefbackend.koompi.app/${item.location}/${item.filename}`}
