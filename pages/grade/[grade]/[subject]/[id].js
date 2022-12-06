@@ -150,14 +150,14 @@ export default function App() {
                   )}`}
                   target="_blank"
                 >
-                  View
+                  មើលផ្ទាល់
                 </Link>
                 <Link
                   target="_blank"
                   href={`https://unicefbackend.koompi.app/${item.location}/${item.filename}`}
                   className="btn btn-success"
                 >
-                  Download
+                  ទាញយក
                 </Link>
               </div>
             </>
