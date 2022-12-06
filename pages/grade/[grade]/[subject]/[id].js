@@ -29,7 +29,6 @@ export default function App() {
         setLoading(false);
       });
   }, [grade, subject, id]);
-  console.log(item);
 
   const handleClickPrevious = () => {
     setTrackIndex((currentTrack) =>
@@ -59,10 +58,10 @@ export default function App() {
       <div className="text-sm breadcrumbs p-9">
         <ul>
           <li>
-            <Link href={`/grade/${grade}`}>{grade}</Link>
+            <Link href={`/grade/${grade}`}>{item.grade_kh}</Link>
           </li>
           <li>
-            <Link href={`/grade/${grade}/${subject}`}>{subject}</Link>
+            <Link href={`/grade/${grade}/${subject}`}>{item.subject_kh}</Link>
           </li>
           <li>
             <Link href="#">{item.file_type}</Link>

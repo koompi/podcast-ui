@@ -9,6 +9,9 @@ const MobileSidebar = () => {
   const openModal = (_key) => {
     setState({ isOpen: !state.isOpen, postId: _key });
   };
+  const closeModal = () => {
+    setState({ isOpen: !state.isOpen });
+  };
 
   useEffect(() => {
     fetch(`https://unicefbackend.koompi.app/public/api/sidebar`)
@@ -19,7 +22,7 @@ const MobileSidebar = () => {
   }, []);
   return (
     <div>
-      <div className=" overflow-y-auto py-4 px-3 bg-base-200 -mb-14">
+      <div className="fixed w-full block overflow-y-auto py-4 px-3 bg-base-200 -mb-14 z-10 mt-3">
         {item.map((res, index) => {
           return (
             <div key={index}>
@@ -85,6 +88,7 @@ const MobileSidebar = () => {
                     <li>
                       <Link
                         href={`/grade/${res.category_id}`}
+                        onClick={closeModal}
                         className={
                           state.postId === res.category_id
                             ? "flex items-center p-2 pl-11 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-base-100 dark:text-white dark:hover:bg-gray-700"
@@ -104,6 +108,7 @@ const MobileSidebar = () => {
                           <div key={index}>
                             <Link
                               href={`/grade/${res.category_id}/${ress.subcategory_id}`}
+                              onClick={closeModal}
                               className={
                                 state.postId === res.category_id
                                   ? " flex items-center p-2 pl-11 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-base-100 dark:text-white dark:hover:bg-gray-700 "
