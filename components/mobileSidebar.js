@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { useTheme } from "next-themes";
-const MobileSidebar = () => {
+const MobileSidebar = ({ onClick }) => {
   const [state, setState] = useState({ isOpen: false, postId: null });
   const [item, setItem] = useState([]);
   const { theme, setTheme } = useTheme("");
@@ -11,6 +11,7 @@ const MobileSidebar = () => {
   };
   const closeModal = () => {
     setState({ isOpen: !state.isOpen });
+    toggle === true;
   };
 
   useEffect(() => {
@@ -22,11 +23,11 @@ const MobileSidebar = () => {
   }, []);
   return (
     <div>
-      <div className="fixed w-full block overflow-y-auto py-4 px-3 bg-base-200 -mb-14 z-10 mt-3">
+      <div className="w-full fixed overflow-y-auto h-screen py-4 px-3 bg-base-200 -mb-14 z-1 mt-3">
         {item.map((res, index) => {
           return (
             <div key={index}>
-              <ul className="space-y-2">
+              <ul className="overflow-y-auto">
                 <li>
                   <button
                     onClick={() => openModal(res.category_id)}
@@ -35,19 +36,6 @@ const MobileSidebar = () => {
                     aria-controls="dropdown-example"
                     data-collapse-toggle="dropdown-example"
                   >
-                    {/* <svg
-                        aria-hidden="true"
-                        className="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M10 2a4 4 0 00-4 4v1H5a1 1 0 00-.994.89l-1 9A1 1 0 004 18h12a1 1 0 00.994-1.11l-1-9A1 1 0 0015 7h-1V6a4 4 0 00-4-4zm2 5V6a2 2 0 10-4 0v1h4zm-6 3a1 1 0 112 0 1 1 0 01-2 0zm7-1a1 1 0 100 2 1 1 0 000-2z"
-                          clipRule="evenodd"
-                        />
-                      </svg> */}
                     <img
                       width={30}
                       height={30}

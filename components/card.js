@@ -14,7 +14,6 @@ const Card = ({
   id,
   filename,
 }) => {
-  console.log(fileType);
   return (
     <div className="show-icon bg-base-200 p-3 rounded-lg overflow-hidden">
       <Link href={`/grade/${grade}/${subject}/${id}`}>
