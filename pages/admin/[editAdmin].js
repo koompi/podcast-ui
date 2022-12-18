@@ -98,7 +98,9 @@ const Editamdin = () => {
                 ) : (
                   ""
                 )}
-                <h1 className=" text-4xl mb-12 underline">Edit Admin</h1>
+                <h1 className=" text-4xl mb-12 underline">
+                  កែ ពណ៍មាន អ្នកគ្រប់គ្រង
+                </h1>
                 <form onSubmit={handleSubmit}>
                   <div className="mb-6 items-center grid grid-cols-5">
                     <label className="text-bold block">Display Name</label>

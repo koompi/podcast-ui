@@ -90,7 +90,7 @@ const Add = () => {
             )}
             {loggedIn && (
               <>
-                <h1 className=" text-4xl mb-12 underline">Add Content</h1>
+                <h1 className=" text-4xl mb-12 underline">បន្ថែម មាតិកា</h1>
               </>
             )}
             {loggedIn ? (

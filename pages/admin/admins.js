@@ -60,7 +60,9 @@ const Admin = () => {
           <div className="container mx-auto">
             {loggedIn && (
               <>
-                <h1 className=" text-4xl mt-12 mb-12 underline">All Admins</h1>
+                <h1 className=" text-4xl mt-12 mb-12 underline">
+                  អ្នកគ្រប់គ្រង ទាំងអស់
+                </h1>
                 {hideMessage ? (
                   <AlertMessage
                     message={message}

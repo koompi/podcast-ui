@@ -8,9 +8,7 @@ const AdminSidebar = () => {
     <div>
       <div className="w-64 mt-12" aria-label="Sidebar">
         <div className="overflow-y-auto py-4 px-3 h-screen bg-base-200 ">
-          <h2 className={`font-bold text-lg  mb-2 mt-4 text-center`}>
-            Content
-          </h2>
+          <h2 className={`font-bold text-lg  mb-2 mt-4 text-center`}>មាតិកា</h2>
           <hr />
           <br />
           <Link
@@ -32,7 +30,7 @@ const AdminSidebar = () => {
               ></path>
             </svg> */}
             <img width={35} src="/images/web-content.png" />
-            <p>All Contents</p>
+            <p>មាតិកា ទាំងអស់</p>
           </Link>
 
           <Link
@@ -54,7 +52,7 @@ const AdminSidebar = () => {
               ></path>
             </svg> */}
             <img width={35} src="/images/copywriting.png" />
-            <p>Add Contents</p>
+            <p>បន្ថែម មាតិកា</p>
           </Link>
           <div className="flex space-x-1 justify-center items-center">
             {/* <svg
@@ -71,7 +69,7 @@ const AdminSidebar = () => {
                 d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
               ></path>
             </svg> */}
-            <h2 className={`font-bold text-lg  mb-2 mt-4`}>Admin</h2>
+            <h2 className={`font-bold text-lg  mb-2 mt-4`}>អ្នកគ្រប់គ្រង</h2>
           </div>
           <hr />
           <br />
@@ -94,7 +92,7 @@ const AdminSidebar = () => {
               ></path>
             </svg> */}
             <img width={32} src="/images/teamwork.png" />
-            <p>All Admins</p>
+            <p>អ្នកគ្រប់គ្រង ទាំងអស់</p>
           </Link>
 
           <Link
@@ -116,7 +114,7 @@ const AdminSidebar = () => {
               ></path>
             </svg> */}
             <img width={32} src="/images/add-user.png" />
-            <p>Add Admins</p>
+            <p>បន្ថែម អ្នកគ្រប់គ្រង</p>
           </Link>
         </div>
       </div>

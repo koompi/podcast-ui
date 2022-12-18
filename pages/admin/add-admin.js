@@ -72,7 +72,9 @@ const Addamdin = () => {
                   ""
                 )}
 
-                <h1 className=" text-4xl mb-12 underline">Add Admins</h1>
+                <h1 className=" text-4xl mb-12 underline">
+                  បន្ថែម អ្នកគ្រប់គ្រង
+                </h1>
                 <form onSubmit={handleSubmit}>
                   <div className="mb-6 grid grid-cols-5 items-center">
                     <label className="text-bold block">Display Name</label>

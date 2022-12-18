@@ -6,10 +6,22 @@ import { useTheme } from "next-themes";
 const Sidebar = () => {
   const [state, setState] = useState({ isOpen: false, postId: null });
   const [item, setItem] = useState([]);
+  const [key, setKey] = useState("");
 
   const openModal = (_key) => {
-    setState({ isOpen: !state.isOpen, postId: _key });
+    setKey(_key);
+    if (key !== _key) {
+      setState({ isOpen: state.isOpen, postId: _key });
+      // setKey(_key);
+    } else {
+      setState({ isOpen: !state.isOpen, postId: _key });
+      // setKey(_key);
+    }
+    // console.log(key, _key);
   };
+  // useEffect(() => {
+  //   openModal();
+  // }, []);
   const { theme, setTheme } = useTheme("");
 
   useEffect(() => {

@@ -53,7 +53,7 @@ const Table = () => {
         <div className="flex-1 h-screen p-7 container mx-auto mt-12">
           {loggedIn && (
             <>
-              <h1 className="mt-12 text-4xl mb-12 underline">All Contents</h1>
+              <h1 className="mt-12 text-4xl mb-12 underline">មាតិកា ទាំងអស់</h1>
               {hideMessage ? (
                 <AlertMessage
                   message={message}

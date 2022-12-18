@@ -11,6 +11,8 @@ import Sidebar from "./sidebar";
 const Navbar = () => {
   const [state, setState] = useState({ isOpen: false, postId: null });
   const [item, setItem] = useState([]);
+  const [key, setKey] = useState("");
+
   const [token, setToken] = useState({});
   const { loggedIn } = useContext(AuthContext);
   useEffect(() => {
@@ -46,7 +48,15 @@ const Navbar = () => {
   // ==========================>mobile Sidebar<<==========================
 
   const openModal = (_key) => {
-    setState({ isOpen: !state.isOpen, postId: _key });
+    // setState({ isOpen: !state.isOpen, postId: _key });
+    setKey(_key);
+    if (key !== _key) {
+      setState({ isOpen: state.isOpen, postId: _key });
+      // setKey(_key);
+    } else {
+      setState({ isOpen: !state.isOpen, postId: _key });
+      // setKey(_key);
+    }
   };
   const closeModal = () => {
     setState({ isOpen: !state.isOpen });
