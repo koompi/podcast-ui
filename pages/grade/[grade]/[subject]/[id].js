@@ -70,6 +70,14 @@ export default function App() {
       </div>
       <br />
 
+      <div className="bg-base-200 p-3 rounded-xl">
+        <h1 className="text-center">
+          ពេលដែលទើបបើកគេហទំព័រដំបូង ការមើលផ្ទាល់និងចំណាយ ១ ទៅ ២ នាទី
+          ដើម្បីចាប់ផ្តើម។ បន្ទាប់ពីរងចាំបានសម្រេច
+          ការមើលផ្ទាល់លើឯកសារដទៃនឹងចំណាយពេលខ្លីវិញហើយ។
+        </h1>
+      </div>
+
       {loading ? (
         "loading..."
       ) : (

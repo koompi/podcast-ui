@@ -97,14 +97,14 @@ const Add = () => {
               <>
                 <form onSubmit={handleSubmit}>
                   <div className="mb-6 grid grid-cols-5 items-center">
-                    <h3>Grade</h3>
+                    <h3 className="text-lg">ថ្នាក់</h3>
                     <div className="relative mt-3">
                       <div
                         onClick={() => setButtonGrade(!buttonGrade)}
                         //   onClick={() => setGrade("hello")}
                         className="bg-base-200 p-3 w-96 rounded-lg cursor-pointer"
                       >
-                        {grade === "" ? "Select Grade" : grade}
+                        {grade === "" ? "ជ្រេីសរេីសថ្នាក់" : grade}
                       </div>
                       <div
                         className={
@@ -124,7 +124,8 @@ const Add = () => {
                                 onClick={() => setButtonGrade(!buttonGrade)}
                                 className="p-2 mt-2 hover:bg-white cursor-pointer"
                               >
-                                {res.category_id}
+                                {/* {res.category_id} */}
+                                {res.category_display_name}
                               </div>
                             </div>
                           ))}
@@ -135,12 +136,12 @@ const Add = () => {
                   {/* =============>>subject<<============== */}
                   {grade === "" ? (
                     <div className="mb-6 items-center grid grid-cols-5">
-                      <h4 className="">Subject</h4>
+                      <h4 className="">មុខវិជ្ជា</h4>
                       <div
                         onClick={() => setButonSubject(!buttonSubject)}
                         className="bg-base-200 p-3 mt-2 w-96 rounded-lg cursor-not-allowed text-gray-300"
                       >
-                        Select Subject
+                        ជ្រេីសរេីស មុខវិជ្ជា
                       </div>
                     </div>
                   ) : (
@@ -174,7 +175,8 @@ const Add = () => {
                                   }
                                   className="p-2 mt-2 hover:bg-white cursor-pointer"
                                 >
-                                  {res.subcategory_id}
+                                  {/* {res.subcategory_id} */}
+                                  {res.subcategory_display_name}
                                 </div>
                               </div>
                             ))}
