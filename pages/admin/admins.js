@@ -83,11 +83,11 @@ const Admin = () => {
                     <table className="table table-zebra w-full">
                       <thead>
                         <tr>
-                          <th>No</th>
-                          <th>Name</th>
-                          <th>Username</th>
-                          <th>Role</th>
-                          <th>Action</th>
+                          <th>លេខរៀង</th>
+                          <th>ឈ្មោះ</th>
+                          <th>ឈ្មោះអ្នកប្រប្រាស់</th>
+                          <th>មុខងារ រដ្ឋបាល/Root</th>
+                          <th>សកម្មភាព</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -104,11 +104,11 @@ const Admin = () => {
                                     className="bg-red-600 px-3 text-pink-100 rounded-md text-sm"
                                     onClick={() => DeleteHandler(res.user_id)}
                                   >
-                                    Delete
+                                    លុប
                                   </button>
                                   <Link href={`/admin/${res.user_id}`}>
                                     <button className="bg-green-600 px-3 text-pink-100 rounded-md text-sm">
-                                      Edit
+                                      កែ
                                     </button>
                                   </Link>
                                 </td>

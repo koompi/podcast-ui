@@ -77,37 +77,41 @@ const Addamdin = () => {
                 </h1>
                 <form onSubmit={handleSubmit}>
                   <div className="mb-6 grid grid-cols-5 items-center">
-                    <label className="text-bold block">Display Name</label>
+                    <label className="text-bold block">ឈ្មោះបង្ហាញ</label>
                     <input
                       name="display_name"
                       value={display_name}
                       onChange={handleChange}
                       className="border-gray-200 border p-2 w-96 rounded-lg"
-                      placeholder="Input Display name"
+                      placeholder="បញ្ចូលឈ្មោះ"
                     />
                   </div>
                   <div className="mb-6 grid grid-cols-5 items-center">
-                    <label className="text-bold block">Username</label>
+                    <label className="text-bold block">
+                      ឈ្មោះអ្នកប្រើប្រាស់
+                    </label>
                     <input
                       name="username"
                       value={username}
                       onChange={handleChange}
                       className="border-gray-200 border p-2 w-96 rounded-lg"
-                      placeholder="Input username"
+                      placeholder="បញ្ចូលឈ្មោះអ្នកប្រើប្រាស់"
                     />
                   </div>
                   <div className="mb-6 grid grid-cols-5 items-center">
-                    <label className="text-bold block">Password</label>
+                    <label className="text-bold block">លេខកូដសម្ងាត់</label>
                     <input
                       name="password"
                       value={password}
                       onChange={handleChange}
                       className="border-gray-200 border p-2 w-96 rounded-lg"
-                      placeholder="Input Password"
+                      placeholder="បញ្ចូលលេខកូដសម្ងាត់"
                     />
                   </div>
                   <div className="mb-6 grid grid-cols-5 items-center">
-                    <label className="text-bold block">Role</label>
+                    <label className="text-bold block">
+                      មុខងារ រដ្ឋបាល/Root
+                    </label>
 
                     <select
                       className="border-gray-200 border p-2 w-96 rounded-lg"

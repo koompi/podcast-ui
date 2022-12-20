@@ -9,11 +9,13 @@ const Add = () => {
   const { loggedIn } = useContext(AuthContext);
   const [item, setItem] = useState([]);
   const [grade, setGrade] = useState("");
+  const [gradeKhmer, setGradeKhmer] = useState("");
   const [showSubject, setShowSubject] = useState([]);
   const [loading, setLoading] = useState("");
   const [buttonGrade, setButtonGrade] = useState(false);
   const [buttonSubject, setButonSubject] = useState(false);
   const [subject, setSubject] = useState("");
+  const [subjectKhmer, setSubjectKhmer] = useState("");
   const [type, setType] = useState("");
   const [showType, setShowType] = useState(false);
   const inputRef = useRef(null);
@@ -71,6 +73,7 @@ const Add = () => {
       throw error;
     }
   };
+  console.log(grade, "grade");
 
   return (
     <div>
@@ -104,7 +107,7 @@ const Add = () => {
                         //   onClick={() => setGrade("hello")}
                         className="bg-base-200 p-3 w-96 rounded-lg cursor-pointer"
                       >
-                        {grade === "" ? "ជ្រេីសរេីសថ្នាក់" : grade}
+                        {grade === "" ? "ជ្រេីសរេីសថ្នាក់" : gradeKhmer}
                       </div>
                       <div
                         className={
@@ -117,6 +120,7 @@ const Add = () => {
                               onClick={() => {
                                 setShowSubject(res.subcategory);
                                 setGrade(res.category_id);
+                                setGradeKhmer(res.category_display_name);
                               }}
                               key={index}
                             >
@@ -146,13 +150,15 @@ const Add = () => {
                     </div>
                   ) : (
                     <div className="mb-6 items-center grid grid-cols-5">
-                      <h4>Subject</h4>
+                      <h4>មុខវិជ្ជា</h4>
                       <div className="relative mt-3">
                         <div
                           onClick={() => setButonSubject(!buttonSubject)}
                           className="bg-base-200 p-3 w-96 rounded-lg cursor-pointer"
                         >
-                          {subject === "" ? "Select Subject" : subject}
+                          {subject === ""
+                            ? "ជ្រេីសរេីស មុខវិជ្ជា"
+                            : subjectKhmer}
                         </div>
                         <div
                           className={
@@ -165,6 +171,7 @@ const Add = () => {
                                 onClick={() => {
                                   //   setButonSubject(res.subcategory);
                                   setSubject(res.subcategory_id);
+                                  setSubjectKhmer(res.subcategory_display_name);
                                 }}
                                 key={index}
                               >
@@ -189,13 +196,13 @@ const Add = () => {
                   {/* =================>>type<<============== */}
 
                   <div className="mb-6 items-center grid grid-cols-5">
-                    <h4 className="mt-4"> Type </h4>
+                    <h4 className="mt-4"> ប្រភេទ </h4>
                     {grade === "" || subject === "" ? (
                       <div
                         onClick={() => setButonSubject(!buttonSubject)}
                         className="bg-base-200 p-3 mt-2 w-96 rounded-lg cursor-not-allowed text-gray-300"
                       >
-                        Select Type
+                        ជ្រេីសរេីស​ ប្រភេទ
                       </div>
                     ) : (
                       <>
@@ -245,7 +252,7 @@ const Add = () => {
                   </div>
                   {/* //==========>>upload file<<================= */}
                   <div className="mb-6 items-center grid grid-cols-5">
-                    <label>Add File</label>
+                    <label>បន្ថែម File</label>
 
                     <input
                       // onChange={uploadFileHandler}
@@ -259,7 +266,7 @@ const Add = () => {
                   </div>
                   {/* //==========>>upload thumbnail<<================= */}
                   <div className="mb-8 items-center grid grid-cols-5">
-                    <label>Add Thumbnail</label>
+                    <label>បន្ថែម​​ រូបភាព</label>
                     <input
                       ref={inputRef}
                       type="file"

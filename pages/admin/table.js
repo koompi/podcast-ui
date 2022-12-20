@@ -75,11 +75,11 @@ const Table = () => {
                   <table className="table table-zebra w-full ">
                     <thead>
                       <tr>
-                        <th>No</th>
-                        <th>Grade</th>
-                        <th>Title</th>
-                        <th>Subject</th>
-                        <th>Action</th>
+                        <th>លេខរៀង</th>
+                        <th>ថ្នាក់</th>
+                        <th>ចំណងជេីង</th>
+                        <th>មុខវិជ្ជា</th>
+                        <th>សកម្មភាព</th>
                       </tr>
                     </thead>
                     <tbody>
