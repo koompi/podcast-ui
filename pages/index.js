@@ -13,7 +13,6 @@ export default function Home() {
         setLoading(false);
       });
   }, []);
-
   return (
     <>
       {loading ? (

@@ -8,7 +8,7 @@ const AdminSidebar = () => {
     <div>
       <div className="w-64 mt-12" aria-label="Sidebar">
         <div className="overflow-y-auto py-4 px-3 h-screen bg-base-200 ">
-          <h2 className={`font-bold text-lg  mb-2 mt-4 text-center`}>មាតិកា</h2>
+          <h2 className={`font-bold text-lg  mb-2 mt-4 pl-5`}>មាតិកា</h2>
           <hr />
           <br />
           <Link
@@ -69,8 +69,8 @@ const AdminSidebar = () => {
                 d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
               ></path>
             </svg> */}
-            <h2 className={`font-bold text-lg  mb-2 mt-4`}>អ្នកគ្រប់គ្រង</h2>
           </div>
+          <h2 className={`font-bold text-lg  mb-2 mt-4 pl-5`}>អ្នកគ្រប់គ្រង</h2>
           <hr />
           <br />
           <Link

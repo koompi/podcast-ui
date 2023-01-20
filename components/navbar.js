@@ -5,6 +5,7 @@ import AuthContext from "./context/authContext";
 import Logout from "./logout";
 import jwt from "jsonwebtoken";
 import { useTheme } from "next-themes";
+import { useRouter } from "next/router";
 import Sidebar from "./sidebar";
 // import MobileSidebar from "./mobileSidebar";
 
@@ -12,7 +13,8 @@ const Navbar = () => {
   const [state, setState] = useState({ isOpen: false, postId: null });
   const [item, setItem] = useState([]);
   const [key, setKey] = useState("");
-
+  const [search, setSearch] = useState("");
+  const [updated, setUpdated] = useState("");
   const [token, setToken] = useState({});
   const { loggedIn } = useContext(AuthContext);
   useEffect(() => {
@@ -20,12 +22,24 @@ const Navbar = () => {
     const decode = jwt.decode(tokenn);
     setToken(decode);
   }, []);
+  const router = useRouter();
 
   const { theme, setTheme } = useTheme("");
   const [mounted, setMounted] = useState(false);
 
   const [toggle, setToggle] = useState(false);
 
+  const handleChange = (event) => {
+    setSearch(event.target.value);
+  };
+
+  const handleKeyDown = (event) => {
+    if (event.key === "Enter") {
+      // 👇 Get input value
+      setUpdated(search);
+      router.push(`/search/${search}/1`);
+    }
+  };
   useEffect(() => setMounted(true), []);
 
   useEffect(() => {
@@ -116,13 +130,16 @@ const Navbar = () => {
         </div>
 
         <div className="flex space-x-6">
-          {/* <div className="form-control">
-          <input
-            type="text"
-            placeholder="Search"
-            className="input input-bordered"
-          />
-        </div> */}
+          <div className="form-control">
+            <input
+              type="text"
+              placeholder="Search"
+              className="input input-bordered"
+              name="search"
+              onChange={handleChange}
+              onKeyDown={handleKeyDown}
+            />
+          </div>
           <div className="shadow-card flex items-center justify-center rounded-md ">
             {theme === "default" ? (
               <span
