@@ -2,59 +2,40 @@ import React, { useEffect, useState } from "react";
 import Card from "../../components/card";
 import { useRouter } from "next/router";
 import axios from "axios";
-
+import ReactPaginate from "react-paginate";
 const Index = () => {
   const [item, setItem] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [count, setCount] = useState();
   const router = useRouter();
   const { grade } = router.query;
 
-  // useEffect(() => {
-  //   axios
-  //     .get(`https://unicefbackend.koompi.app/public/api/query/${grade}`)
-  //     .then((data) => {
-  //       setLoading(true);
-  //       setItem(data.data);
-  //       // setLoading(false);
-  //     });
-  // }, [grade]);
   useEffect(() => {
     setLoading(true);
-    fetch(`https://unicefbackend.koompi.app/public/api/query/${grade}`)
+    // fetch(`https://unicefbackend.koompi.app/public/api/query/${grade}`)
+    fetch(
+      `https://unicefbackend.koompi.app/public/api/query/Grade1/pagination?result_limit=10&page_number=1`
+    )
       .then((res) => res.json())
       .then((data) => {
-        setItem(data);
+        setItem(data.data);
+        setCount(data.page_count);
         setLoading(false);
       });
   }, [grade]);
-
+  const fetchData = async (currenPage) => {
+    const { data } = await axios.get(
+      `https://unicefbackend.koompi.app/public/api/query/Grade1/pagination?result_limit=10&page_number=${currenPage}`
+    );
+    return data.data;
+  };
+  const handlePageClick = async ({ selected: selected }) => {
+    let currenPage = selected + 1;
+    const dataFromServer = await fetchData(currenPage);
+    console.log(currenPage, "currentPage");
+    setItem(dataFromServer);
+  };
   return (
-    // <div className="container mx-auto">
-    //   <br />
-    //   {loading ? (
-    //     "laoding..."
-    //   ) : (
-    //     <div className="grid grid-cols-5 gap-4">
-    //       {item.map((items, i) => (
-    //         <Card
-    //           key={i}
-    //           title={items.display_name}
-    //           thumbnail={items.thumbnail}
-    //           grade={items.grade}
-    //           subject={items.subject}
-    //           fileType={items.file_type}
-    //           location={items.location}
-    //           subjectKh={items.subject_kh}
-    //           thumbnailName={items.thumbnail.thumbnail_name}
-    //           gradeKh={items.grade_kh}
-    //           id={items.file_id}
-    //         />
-    //       ))}
-    //     </div>
-    //   )}
-
-    //   <br />
-    // </div>
     <>
       <br />
       {/* <------ category section -------> */}
@@ -78,6 +59,33 @@ const Index = () => {
               filename={items.filename}
             />
           ))}
+        </div>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            padding: 20,
+            boxSizing: "border-box",
+            width: "100%",
+            height: "100%",
+          }}
+        >
+          <ReactPaginate
+            activeClassName={"item active "}
+            breakClassName={"item break-me "}
+            breakLabel={"..."}
+            containerClassName={"pagination"}
+            disabledClassName={"disabled-page"}
+            marginPagesDisplayed={2}
+            nextClassName={"item next "}
+            // nextLabel={<ArrowForwardIosIcon style={{ fontSize: 18, width: 150 }} />}
+            onPageChange={handlePageClick}
+            pageCount={count}
+            pageClassName={"item pagination-page "}
+            pageRangeDisplayed={2}
+            previousClassName={"item previous"}
+          />
         </div>
       </div>
     </>

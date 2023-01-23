@@ -5,7 +5,6 @@ import ReactPaginate from "react-paginate";
 import axios from "axios";
 const Search = () => {
   const [item, setItem] = useState([]);
-  const [fetchDatas, setFetchData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [count, setCount] = useState();
   // const [search, setSearch] = useState("កង្កែប");
@@ -27,10 +26,6 @@ const Search = () => {
   }, [page]);
 
   const fetchData = async (currenPage) => {
-    // const { data } = fetch(
-    //   `https://unicefbackend.koompi.app/public/api/search?search_string=កង្កែប&result_limit=5&page_number=${currenPage}`
-    // );
-    // return data;
     const { data } = await axios.get(
       `https://unicefbackend.koompi.app/public/api/search?search_string=កង្កែប&result_limit=5&page_number=${currenPage}`
     );
@@ -43,92 +38,6 @@ const Search = () => {
     setItem(dataFromServer);
   };
 
-  // function Items({ currentItems }) {
-  //   return (
-  //     <div className="items">
-  //       {currentItems &&
-  //         currentItems.map((item, i) => (
-  //           // eslint-disable-next-line react/jsx-key
-  //           <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-5 md:gap-4 gap-2">
-  //             {loading === false || !item || item === undefined ? (
-  //               "loading..."
-  //             ) : (
-  //               <Card
-  //                 key={i}
-  //                 gradeName={item.category_display_name}
-  //                 title={item.display_name}
-  //                 thumbnail={item.thumbnail}
-  //                 grade={item.grade}
-  //                 subject={item.subject}
-  //                 fileType={item.file_type}
-  //                 location={item.location}
-  //                 gradeKh={item.grade_kh}
-  //                 subjectKh={item.subject_kh}
-  //                 thumbnailName={item.thumbnail.thumbnail_name}
-  //                 id={item.file_id}
-  //                 filename={item.filename}
-  //               />
-  //             )}
-  //           </div>
-  //         ))}
-  //     </div>
-  //   );
-  // }
-  // function PaginatedItems() {
-
-  //   const [currentItems, setCurrentItems] = useState([]);
-
-  //   const [itemOffset, setItemOffset] = useState(0);
-
-  //   useEffect(() => {
-  //     // Fetch items from another resources.
-  //     const endOffset = itemOffset + 5;
-  //     console.log(`Loading items from ${itemOffset} to ${endOffset}`);
-  //     // setCurrentItems(item.slice(itemOffset, endOffset));
-  //     setCurrentItems(item);
-  //     // setPageCount(Math.ceil(item.length / itemsPerPage));
-  //     // setPageCount(count);
-  //     console.log(count, "imte");
-  //   }, [itemOffset]);
-
-  //   // Invoke when user click to request another page.
-  //   const handlePageClick = (event) => {
-  //     const newOffset = (event.selected * 5) % item.length;
-  //     // const newOffset = setPage(event.selected);
-  //     console.log(
-  //       `User requested page number ${event.selected}, which is offset ${newOffset}`
-  //     );
-  //     setItemOffset(newOffset);
-  //   };
-  //   // function handlePageClick({ selected: selectedPage }) {
-  //   //   setPage(selectedPage);
-  //   // }
-  //   return (
-  //     <>
-  //       <Items currentItems={currentItems} />
-  //       <ReactPaginate
-  //         nextLabel="next >"
-  //         onPageChange={handlePageClick}
-  //         pageRangeDisplayed={3}
-  //         marginPagesDisplayed={2}
-  //         pageCount={count}
-  //         previousLabel="< previous"
-  //         pageClassName="page-item"
-  //         pageLinkClassName="page-link"
-  //         previousClassName="page-item"
-  //         previousLinkClassName="page-link"
-  //         nextClassName="page-item"
-  //         nextLinkClassName="page-link"
-  //         breakLabel="..."
-  //         breakClassName="page-item"
-  //         breakLinkClassName="page-link"
-  //         containerClassName="pagination"
-  //         activeClassName="active"
-  //         renderOnZeroPageCount={null}
-  //       />
-  //     </>
-  //   );
-  // }
   return (
     <div>
       <div className="p-2 md:p-12">
@@ -160,7 +69,6 @@ const Search = () => {
             flexDirection: "column",
             justifyContent: "center",
             padding: 20,
-
             boxSizing: "border-box",
             width: "100%",
             height: "100%",

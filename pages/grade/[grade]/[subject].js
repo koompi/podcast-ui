@@ -2,10 +2,12 @@ import React, { useEffect, useState } from "react";
 import Card from "../../../components/card";
 import { useRouter } from "next/router";
 import axios from "axios";
+import ReactPaginate from "react-paginate";
 
 const Subject = () => {
   const [item, setItem] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [count, setCount] = useState();
   const router = useRouter();
   const { grade, subject } = router.query;
 
@@ -19,43 +21,29 @@ const Subject = () => {
   useEffect(() => {
     setLoading(true);
     fetch(
-      `https://unicefbackend.koompi.app/public/api/query/${grade}/${subject}`
+      `https://unicefbackend.koompi.app/public/api/query/${grade}/${subject}/pagination?result_limit=10&page_number=1`
+      // `https://unicefbackend.koompi.app/public/api/query/${grade}/${subject}`
     )
       .then((res) => res.json())
       .then((data) => {
-        setItem(data);
+        setItem(data.data);
+        setCount(data.page_count);
         setLoading(false);
       });
   }, [grade, subject]);
-
+  const fetchData = async (currenPage) => {
+    const { data } = await axios.get(
+      `https://unicefbackend.koompi.app/public/api/query/${grade}/${subject}/pagination?result_limit=10&page_number=${currenPage}`
+    );
+    return data.data;
+  };
+  const handlePageClick = async ({ selected: selected }) => {
+    let currenPage = selected + 1;
+    const dataFromServer = await fetchData(currenPage);
+    console.log(currenPage, "currentPage");
+    setItem(dataFromServer);
+  };
   return (
-    // <div className="p-2 md:p-12">
-    //   <br />
-    //   <br />
-    //   <div className="grid grid-cols-5 gap-2">
-    //     {loading ? (
-    //       "loading..."
-    //     ) : (
-    //       <>
-    //         {item.map((items, i) => (
-    //           <Card
-    //             key={i}
-    //             title={items.display_name}
-    //             thumbnail={items.thumbnail}
-    //             grade={items.grade}
-    //             subject={items.subject}
-    //             fileType={items.file_type}
-    //             location={items.location}
-    //             thumbnailName={items.thumbnail.thumbnail_name}
-    //             subjectKh={items.subject_kh}
-    //             gradeKh={items.grade_kh}
-    //             id={items.file_id}
-    //           />
-    //         ))}
-    //       </>
-    //     )}
-    //   </div>
-    // </div>
     <>
       <br />
       {/* <------ category section -------> */}
@@ -79,6 +67,33 @@ const Subject = () => {
               filename={items.filename}
             />
           ))}
+        </div>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            padding: 20,
+            boxSizing: "border-box",
+            width: "100%",
+            height: "100%",
+          }}
+        >
+          <ReactPaginate
+            activeClassName={"item active "}
+            breakClassName={"item break-me "}
+            breakLabel={"..."}
+            containerClassName={"pagination"}
+            disabledClassName={"disabled-page"}
+            marginPagesDisplayed={2}
+            nextClassName={"item next "}
+            // nextLabel={<ArrowForwardIosIcon style={{ fontSize: 18, width: 150 }} />}
+            onPageChange={handlePageClick}
+            pageCount={count}
+            pageClassName={"item pagination-page "}
+            pageRangeDisplayed={2}
+            previousClassName={"item previous"}
+          />
         </div>
       </div>
     </>

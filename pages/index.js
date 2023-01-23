@@ -1,18 +1,36 @@
+import axios from "axios";
 import { useState, useEffect } from "react";
+import ReactPaginate from "react-paginate";
 import Card from "../components/card";
-import Footer from "../components/footer";
 
 export default function Home() {
   const [loading, setLoading] = useState(false);
   const [item, setItem] = useState([]);
+  const [count, setCount] = useState();
   useEffect(() => {
-    fetch(`https://unicefbackend.koompi.app/public/api/query`)
+    // fetch(`https://unicefbackend.koompi.app/public/api/query`)
+    fetch(
+      `https://unicefbackend.koompi.app/public/api/query/pagination?result_limit=10&page_number=1`
+    )
       .then((res) => res.json())
       .then((data) => {
-        setItem(data);
+        setItem(data.data);
+        setCount(data.page_count);
         setLoading(false);
       });
   }, []);
+  const fetchData = async (currenPage) => {
+    const { data } = await axios.get(
+      `https://unicefbackend.koompi.app/public/api/query/pagination?result_limit=10&page_number=${currenPage}`
+    );
+    return data.data;
+  };
+  const handlePageClick = async ({ selected: selected }) => {
+    let currenPage = selected + 1;
+    const dataFromServer = await fetchData(currenPage);
+    console.log(currenPage, "currentPage");
+    setItem(dataFromServer);
+  };
   return (
     <>
       {loading ? (
@@ -41,6 +59,33 @@ export default function Home() {
                   filename={items.filename}
                 />
               ))}
+            </div>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                padding: 20,
+                boxSizing: "border-box",
+                width: "100%",
+                height: "100%",
+              }}
+            >
+              <ReactPaginate
+                activeClassName={"item active "}
+                breakClassName={"item break-me "}
+                breakLabel={"..."}
+                containerClassName={"pagination"}
+                disabledClassName={"disabled-page"}
+                marginPagesDisplayed={2}
+                nextClassName={"item next "}
+                // nextLabel={<ArrowForwardIosIcon style={{ fontSize: 18, width: 150 }} />}
+                onPageChange={handlePageClick}
+                pageCount={count}
+                pageClassName={"item pagination-page "}
+                pageRangeDisplayed={2}
+                previousClassName={"item previous"}
+              />
             </div>
           </div>
         </>
