@@ -2,11 +2,13 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import ReactPaginate from "react-paginate";
 import Card from "../components/card";
+import { useTheme } from "next-themes";
 
 export default function Home() {
   const [loading, setLoading] = useState(false);
   const [item, setItem] = useState([]);
   const [count, setCount] = useState();
+  const { theme, setTheme } = useTheme("");
   useEffect(() => {
     // fetch(`https://unicefbackend.koompi.app/public/api/query`)
     fetch(
@@ -62,30 +64,53 @@ export default function Home() {
             </div>
             <div
               style={{
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "center",
+                // display: "flex",
+                // flexDirection: "column",
+                // justifyContent: "center",
+                // width: "100%",
                 padding: 20,
                 boxSizing: "border-box",
-                width: "100%",
                 height: "100%",
+                float: "right",
               }}
             >
-              <ReactPaginate
-                activeClassName={"item active "}
-                breakClassName={"item break-me "}
-                breakLabel={"..."}
-                containerClassName={"pagination"}
-                disabledClassName={"disabled-page"}
-                marginPagesDisplayed={2}
-                nextClassName={"item next "}
-                // nextLabel={<ArrowForwardIosIcon style={{ fontSize: 18, width: 150 }} />}
-                onPageChange={handlePageClick}
-                pageCount={count}
-                pageClassName={"item pagination-page "}
-                pageRangeDisplayed={2}
-                previousClassName={"item previous"}
-              />
+              {theme === "default" ? (
+                <ReactPaginate
+                  activeClassName={"item-white active"}
+                  breakClassName={"item-white break-me "}
+                  breakLabel={"..."}
+                  containerClassName={"pagination-white"}
+                  // containerClassName={
+                  //   "flex items-center flex-row h-30 justify-center relative w-[600px] rounded-md"
+                  // }
+                  disabledClassName={"disabled-page"}
+                  marginPagesDisplayed={2}
+                  nextClassName={"item-white next "}
+                  onPageChange={handlePageClick}
+                  pageCount={count}
+                  pageClassName={"item-white pagination-page "}
+                  pageRangeDisplayed={2}
+                  previousClassName={"item-white previous"}
+                />
+              ) : (
+                <ReactPaginate
+                  activeClassName={"item active"}
+                  breakClassName={"item break-me "}
+                  breakLabel={"..."}
+                  containerClassName={"pagination"}
+                  // containerClassName={
+                  //   "flex items-center flex-row h-30 justify-center relative w-[600px] rounded-md"
+                  // }
+                  disabledClassName={"disabled-page"}
+                  marginPagesDisplayed={2}
+                  nextClassName={"item next "}
+                  onPageChange={handlePageClick}
+                  pageCount={count}
+                  pageClassName={"item pagination-page "}
+                  pageRangeDisplayed={2}
+                  previousClassName={"item previous"}
+                />
+              )}
             </div>
           </div>
         </>

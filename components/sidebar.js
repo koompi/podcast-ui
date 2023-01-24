@@ -146,11 +146,11 @@
 //               </div>
 //             );
 //           })}
-//           <h1 className="text-transparent text-lg bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-700 text-center  py-4 absolute bottom-16">
-//             Made with
-//             <span className="text-red-700 sm:h-44"> ❤️ </span>
-//             @KOOMPI
-//           </h1>
+// <h1 className="text-transparent text-lg bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-700 text-center  py-4 absolute bottom-16">
+//   Made with
+//   <span className="text-red-700 sm:h-44"> ❤️ </span>
+//   @KOOMPI
+// </h1>
 //         </div>
 //       </div>
 //     </div>
@@ -294,6 +294,11 @@ const Sidebar = () => {
               </div>
             );
           })}
+          <h1 className="text-transparent text-lg bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-700 text-center  py-4 absolute bottom-16">
+            Made with
+            <span className="text-red-700 sm:h-44"> ❤️ </span>
+            @KOOMPI
+          </h1>
         </div>
       </div>
     </div>

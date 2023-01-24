@@ -99,11 +99,11 @@ const Editamdin = () => {
                   ""
                 )}
                 <h1 className=" text-4xl mb-12 underline">
-                  កែ ពណ៍មាន អ្នកគ្រប់គ្រង
+                  កែ ពត៍មាន អ្នកគ្រប់គ្រង
                 </h1>
                 <form onSubmit={handleSubmit}>
                   <div className="mb-6 items-center grid grid-cols-5">
-                    <label className="text-bold block">Display Name</label>
+                    <label className="text-bold block">ឈ្មោះបង្ហាញ</label>
 
                     <input
                       name="display_name"
@@ -114,7 +114,9 @@ const Editamdin = () => {
                     />
                   </div>
                   <div className="mb-6 items-center grid grid-cols-5">
-                    <label className="text-bold block">Username</label>
+                    <label className="text-bold block">
+                      ឈ្មោះអ្នកប្រើប្រាស់
+                    </label>
                     <input
                       name="username"
                       defaultValue={item.username}
@@ -124,7 +126,7 @@ const Editamdin = () => {
                     />
                   </div>
                   <div className="mb-6 items-center grid grid-cols-5">
-                    <label className="text-bold block">Password</label>
+                    <label className="text-bold block">លេខកូដសម្ងាត់</label>
                     <input
                       name="password"
                       defaultValue={item.password}
@@ -134,7 +136,9 @@ const Editamdin = () => {
                     />
                   </div>
                   <div className="mb-6 items-center grid grid-cols-5">
-                    <label className="text-bold block">Role</label>
+                    <label className="text-bold block">
+                      មុខងារ រដ្ឋបាល/Root
+                    </label>
 
                     <select
                       className="border-gray-200 border p-2 w-96 rounded-lg"
